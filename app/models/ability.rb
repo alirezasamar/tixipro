@@ -3,12 +3,12 @@ class Ability
 
   def initialize(user)
     user ||= User.new # Guest user
-
+    can :read, Event
     if user.admin?
       can :manage, :all
     elsif user.organizer?
-      can :read, Event
-      can :create, Event
+      can :read, Event, Ticket
+      can :create, Event, Ticket
       can :update, Event do |event|
         event.try(:user) == user
       end

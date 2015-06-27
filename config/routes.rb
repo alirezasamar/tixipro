@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
   scope "/admin" do
     resources :users
   end
@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   authenticated :user do
     root :to => 'events#index', as: :authenticated_root
   end
-  root :to => 'welcome#index'
+  root :to => 'events#index'
 
 end

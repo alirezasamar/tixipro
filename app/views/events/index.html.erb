@@ -24,7 +24,9 @@
         <td><%= event.genre %></td>
         <td><%= event.start %></td>
         <td><%= event.end %></td>
-        <td><%= link_to 'Add ticket', new_event_ticket_path(event) %></td>
+        <% if can? :create, event %>
+          <td><%= link_to 'Add ticket', new_event_ticket_path(event) %></td>
+        <% end %>
         <td><%= link_to 'Show', event %></td>
         <% if can? :update, event %>
           <td><%= link_to 'Edit', edit_event_path(event) %></td>
