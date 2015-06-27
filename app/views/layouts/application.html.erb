@@ -25,12 +25,11 @@
 
         <li><%= link_to('Events', root_path) %></li>
 
-        <!-- <li><%= link_to('My Bookings', bookings_path) if user_signed_in? %></li> -->
 
         </ul>
 
        <ul class="nav navbar-nav navbar-right">
-        <li><p class="navbar-text"><%=link_to current_user.first_name, edit_user_registration_path if user_signed_in? %></p></li>
+        <li><p class="navbar-text"><%=link_to current_user.email, edit_user_registration_path if user_signed_in? %></p></li>
         <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) if user_signed_in? %></li>
         <li><p class="navbar-text"><%= link_to('Login', new_user_session_path) unless user_signed_in? %></li>
 

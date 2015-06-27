@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= link_to 'Show Tickets', event_tickets_path(@event, @ticket), class: 'btn btn-default' %>
+
 <p>
   <strong>Name:</strong>
   <%= @event.name %>
@@ -7,7 +9,7 @@
 
 <p>
   <strong>Description:</strong>
-  <%= @event.description %>
+  <%= @event.description.html_safe %>
 </p>
 
 <p>
