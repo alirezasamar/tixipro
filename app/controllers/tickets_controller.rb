@@ -7,6 +7,7 @@ class TicketsController < ApplicationController
   # GET /tickets.json
   def index
     @tickets = Ticket.all
+    @order_item = current_order.order_items.new
   end
 
   # GET /tickets/1

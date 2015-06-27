@@ -8,4 +8,6 @@ class Event < ActiveRecord::Base
   validates_presence_of :name, :venue, :description, :genre, :start, :end
 
   GENRES = %w(Dance Traditional Music Comedy Literature)
+
+  # default_scope { where(active: true) }
 end
