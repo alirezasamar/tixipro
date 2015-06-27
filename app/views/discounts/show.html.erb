@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ticket:</strong>
+  <%= @discount.ticket_id %>
+</p>
+
+<p>
+  <strong>Discount percentage:</strong>
+  <%= @discount.discount_percentage %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @discount.code %>
+</p>
+
+<%= link_to 'Edit', edit_discount_path(@discount) %> |
+<%= link_to 'Back', discounts_path %>

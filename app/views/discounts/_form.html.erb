@@ -1,0 +1,29 @@
+<%= form_for(@discount) do |f| %>
+  <% if @discount.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@discount.errors.count, "error") %> prohibited this discount from being saved:</h2>
+
+      <ul>
+      <% @discount.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :ticket_id %><br>
+    <%= f.collection_select(:ticket_id, @tickets, :id, :ticket_type, {:prompt => '-- Choose a Ticket type --'})%>
+  </div>
+  <div class="field">
+    <%= f.label :discount_percentage %><br>
+    <%= f.number_field :discount_percentage %>
+  </div>
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
