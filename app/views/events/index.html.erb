@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Cover Image</th>
       <th>Name</th>
       <th>Description</th>
       <th>Genre</th>
@@ -17,8 +18,9 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
+        <td><%= link_to image_tag(event.cover_image.url(:small)), event.cover_image.url %></td>
         <td><%= event.name %></td>
-        <td><%= event.description %></td>
+        <td><%= event.description.html_safe %></td>
         <td><%= event.genre %></td>
         <td><%= event.start %></td>
         <td><%= event.end %></td>

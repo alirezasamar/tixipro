@@ -1,0 +1,11 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+//colors
+$color_red_approx: red;
+
+//for * label in forms
+label.required:after {
+  content: " *";
+  color: $color_red_approx;
+}

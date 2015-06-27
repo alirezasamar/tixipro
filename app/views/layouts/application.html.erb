@@ -8,7 +8,52 @@
 </head>
 <body>
 
-<%= yield %>
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Teaket</a>
+      <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
+
+        <!-- <li><%= link_to('All Events', events_path) %></li> -->
+
+        <li><%= link_to('My Tickets', events_path) if user_signed_in? %></li>
+
+        <li><%= link_to('Events', root_path) %></li>
+
+        <!-- <li><%= link_to('My Bookings', bookings_path) if user_signed_in? %></li> -->
+
+        </ul>
+
+       <ul class="nav navbar-nav navbar-right">
+        <li><p class="navbar-text"><%=link_to current_user.first_name, edit_user_registration_path if user_signed_in? %></p></li>
+        <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) if user_signed_in? %></li>
+        <li><p class="navbar-text"><%= link_to('Login', new_user_session_path) unless user_signed_in? %></li>
+
+       </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <%= yield %>
+      </div>
+    </div><!--/row-->
+
+  <!--   <footer class="navbar navbar-default navbar-fixed-bottom">
+      <div class="container">
+        <p style="text-align:center">&copy; TREC 2015</p>
+      </div>
+    </footer> -->
+
+  </div>
 
 </body>
 </html>
