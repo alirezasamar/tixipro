@@ -9,3 +9,7 @@
 OrderStatus.create! id: 1, name: "Pending"
 OrderStatus.create! id: 2, name: "Completed"
 OrderStatus.create! id: 3, name: "Cancelled"
+
+Role.create({name: "Regular", description: "Can read events"})
+Role.create({name: "Organizer", description: "Can read and create events. Can update and destroy own events"})
+Role.create({name: "Admin", description: "Can perform any CRUD operation on any resource"})

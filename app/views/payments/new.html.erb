@@ -1,0 +1,37 @@
+<div class="well">
+
+  <div class="row">
+    <div class="col-xs-8">
+
+    <%= form_for @payment, html: { class: "basic-grey" } do |f| %>
+          <% if @payment.errors.any? %>
+            <div id="error_explanation">
+              <h2>
+                <%= pluralize(@payment.errors.count, "error") %>
+                prohibited this registration from being saved:
+              </h2>
+              <ul>
+                <% @payment.errors.full_messages.each do |message| %>
+                  <li>
+                    <%= message %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="field">
+            <%= f.hidden_field :order_id, value: @order.id %>
+          </div>
+          <div class="field">
+            <%= f.hidden_field :user_id, value: current_user.id %>
+          </div>
+          <div class="col-xs-4">
+            <h4 class="text-right">Subtotal: <span style="color: green"><%= number_to_currency current_order.subtotal %></span></h4>
+          </div>
+          <div class="actions">
+            <%= f.submit "Paypal Payment", class: "btn", style: "color: white;background: rgb(242, 118, 73);" %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>

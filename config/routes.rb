@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  resource :cart, only: [:show]
-  resources :order_items, only: [:create, :update, :destroy]
+  get 'carts/:id', to: 'carts#show', as: 'current_cart', id: 'current'
 
   devise_for :users, :path => '/', controllers: {omniauth_callbacks: "authentications", registrations: "registrations"}
 
@@ -15,6 +14,10 @@ Rails.application.routes.draw do
   resources :events do
     resources :tickets
   end
+
+  resource :cart, only: [:show]
+  resources :order_items, only: [:create, :update, :destroy]
+  resources :payments
 
   authenticated :user do
     root :to => 'events#index', as: :authenticated_root

@@ -33,11 +33,10 @@
         <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) if user_signed_in? %></li>
         <li><p class="navbar-text"><%= link_to('Login', new_user_session_path) unless user_signed_in? %></li>
         <li><p class="navbar-text"><%= link_to 'Login with FB', user_omniauth_authorize_path(:facebook) unless user_signed_in? %></li>
-
+        <li><p class="navbar-text"><%= render 'layouts/cart_text' if user_signed_in? %></li>
        </ul>
 
         <div class="col-xs-6 text-right">
-         <h1 class="cart-text"><%= render 'layouts/cart_text' %></h1>
         </div>
 
       </div>

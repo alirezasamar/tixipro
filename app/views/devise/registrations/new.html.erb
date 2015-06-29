@@ -7,8 +7,10 @@
     <%= f.input :name, required: true, autofocus: true %>
     <%= f.collection_select(:role_id, Role.all, :id, :name, {prompt: true}) %>
     <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
+    <% if f.object.password_required? %>
+      <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+      <%= f.input :password_confirmation, required: true %>
+    <% end %>
   </div>
 
   <div class="form-actions">

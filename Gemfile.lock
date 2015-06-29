@@ -42,6 +42,11 @@ GEM
     activejob (4.2.1)
       activesupport (= 4.2.1)
       globalid (>= 0.3.0)
+    activemerchant (1.50.0)
+      activesupport (>= 3.2.14, < 5.0.0)
+      builder (>= 2.1.2, < 4.0.0)
+      i18n (>= 0.6.9)
+      nokogiri (~> 1.4)
     activemodel (4.2.1)
       activesupport (= 4.2.1)
       builder (~> 3.1)
@@ -60,6 +65,10 @@ GEM
       execjs
       json
     bcrypt (3.1.10)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.5)
@@ -73,6 +82,7 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.7)
       climate_control (>= 0.0.3, < 1.0)
+    coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -218,6 +228,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemerchant
+  better_errors
   bootstrap-sass
   byebug
   cancancan (~> 1.10)
