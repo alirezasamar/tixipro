@@ -9,6 +9,7 @@ class Order < ActiveRecord::Base
     order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
   end
 
+
   private
 
   def set_order_status

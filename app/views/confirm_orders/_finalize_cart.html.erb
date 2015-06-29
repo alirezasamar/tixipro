@@ -13,7 +13,7 @@
   </p>
 <% else %>
   <% @order_items.each do |order_item| %>
-    <%= render 'carts/cart_row', ticket: order_item.ticket, order_item: order_item, show_total: true %>
+    <%= render 'confirm_orders/ticket_row', ticket: order_item.ticket, order_item: order_item, show_total: true %>
   <% end %>
-  <%= link_to "Review Order", confirm_order_path, class: 'btn btn-success pull-right' %>
+  <%= link_to "Checkout", new_payment_path(order_id: current_order.id), class: 'btn btn-success pull-right' %>
 <% end %>

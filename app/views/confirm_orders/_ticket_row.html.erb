@@ -1,0 +1,31 @@
+<div class="well">
+
+  <div class="row">
+    <div class="col-xs-8">
+      <h4><%= ticket.ticket_type %> X <span class="label label-primary"><%= order_item.quantity.to_i %></span></h4>
+
+    </div>
+    <div class="col-xs-4">
+
+      <%= form_for order_item, remote: true do |f| %>
+        <h4>Unit Price: <span style="color: green"><%= number_to_currency order_item.unit_price %></span></h4>
+        <h4>Total Price: <span style="color: green"><%= number_to_currency order_item.total_price %></span></h4>
+
+        <div class="col-xs-3">
+          <%= f.hidden_field :ticket_id, value: ticket.id %>
+          <%= f.text_field :code %>
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-8">
+            <div class="btn-group">
+              <%= f.submit "Validate Coupon", class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>

@@ -8,6 +8,7 @@ class PaymentsController < ApplicationController
 
   # GET /registrations/1
   def show
+    @qr = RQRCode::QRCode.new( @payment.transaction_id, size: 2)
   end
 
   # GET /registrations/new
@@ -31,10 +32,10 @@ class PaymentsController < ApplicationController
   def hook
     params.permit! # Permit all Paypal input params
     status = params[:payment_status]
-    if status == "Completed"
+    # if status == "Completed"
       @payment = Payment.find params[:invoice]
-      @payment.update_attributes notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now
-    end
+      @payment.update_attributes notification_params: params, currency_type: params[:mc_currency], transaction_amount: params[:mc_gross], status: status, transaction_id: params[:txn_id], purchased_at: Time.now
+    # end
     render nothing: true
   end
 

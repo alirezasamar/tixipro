@@ -42,11 +42,6 @@ GEM
     activejob (4.2.1)
       activesupport (= 4.2.1)
       globalid (>= 0.3.0)
-    activemerchant (1.50.0)
-      activesupport (>= 3.2.14, < 5.0.0)
-      builder (>= 2.1.2, < 4.0.0)
-      i18n (>= 0.6.9)
-      nokogiri (~> 1.4)
     activemodel (4.2.1)
       activesupport (= 4.2.1)
       builder (~> 3.1)
@@ -78,6 +73,7 @@ GEM
     byebug (5.0.0)
       columnize (= 0.9.0)
     cancancan (1.11.0)
+    chunky_png (1.3.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.7)
@@ -182,6 +178,8 @@ GEM
       json (~> 1.4)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rqrcode-with-patches (0.6.0)
+      chunky_png
     sass (3.4.15)
     sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -228,7 +226,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activemerchant
   better_errors
   bootstrap-sass
   byebug
@@ -244,6 +241,7 @@ DEPENDENCIES
   paperclip!
   pg
   rails (= 4.2.1)
+  rqrcode-with-patches
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_form

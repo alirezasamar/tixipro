@@ -2,16 +2,31 @@
   <section id="ruby">
     <section class="detailed-syllabus">
       <div class="wrapper-inside">
-        <h3 class="title">Payment invoice</h3>
+        <h3 class="title">Payment invoice #<%= @payment.id %></h3>
       </div>
       <div class="columns clearfix">
         <div class="left" style="padding-left:100px;">
           <p id="notice">
             <%= notice %>
           </p>
+          
+          <table class="qr-code">
+          <% @qr.modules.each_index do |x| %>
+            <tr>
+            <% @qr.modules.each_index do |y| %>
+             <% if @qr.dark?(x,y) %>
+              <td class="black"/>
+             <% else %>
+              <td class="white"/>
+             <% end %>
+            <% end %>
+            </tr>
+          <% end %>
+          </table>
+
           <p>
             <strong>Price:</strong>
-            $#{@payment.ticket.price}
+            <%= @payment.currency_type %> <%= @payment.transaction_amount %>
           </p>
           <p>
             <strong>Payment status:</strong>

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'carts/:id', to: 'carts#show', as: 'current_cart', id: 'current'
-
   devise_for :users, :path => '/', controllers: {omniauth_callbacks: "authentications", registrations: "registrations"}
 
   scope "/admin" do
@@ -18,6 +16,10 @@ Rails.application.routes.draw do
   resource :cart, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
   resources :payments
+  resource :confirm_order, only: [:show]
+
+  post "/payments/:id" => "payments#show"
+  post "/hook" => "payments#hook"
 
   authenticated :user do
     root :to => 'events#index', as: :authenticated_root
