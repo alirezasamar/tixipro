@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to Diversecity, <%= @user.name %></h1>
+    <p>
+      Thank you for your purchase. Below are your details of transaction.
+    </p>
+    <br>
+    <% @transaction = Payment.where(user_id: @user.id).order("updated_at").last %>
+    <p>Transaction ID: <%= @transaction.transaction_id %></p>
+    <p>Amount Paid: <%= @transaction.transaction_amount %></p>
+    <p>Payment Date and Time: <%= @transaction.purchased_at.strftime(" %d/%m/%Y at %I:%M%p") %></p>
+    <br>
+      <% @tickets = @transaction.order.order_items %>
+      <% @tickets.each do |ticket| %>
+        <p>Ticket type: <%= Ticket.find(ticket.ticket_id).ticket_type %></p>
+        <p>Seat No: <%= ticket.seat_no %></p>
+      <% end %>
+      <hr>
+    <br>
+    <p>Thanks and have a great day!</p>
+  </body>
+</html>

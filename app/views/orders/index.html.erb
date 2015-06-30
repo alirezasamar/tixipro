@@ -1,0 +1,21 @@
+<h3 class="text-center">My Tickets</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Ticket type</th>
+      <th>Price</th>
+      <th>Seat No</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @my_tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.ticket.ticket_type %></td>
+        <td><%= ticket.unit_price %></td>
+        <td><%= ticket.seat_no %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
