@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150629091750) do
+ActiveRecord::Schema.define(version: 20150630013652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,10 @@ ActiveRecord::Schema.define(version: 20150629091750) do
     t.string   "code"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "event_id"
   end
+
+  add_index "discounts", ["event_id"], name: "index_discounts_on_event_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -66,6 +69,21 @@ ActiveRecord::Schema.define(version: 20150629091750) do
     t.datetime "cover_image_updated_at"
     t.string   "venue"
     t.integer  "user_id"
+    t.integer  "hall_id"
+  end
+
+  add_index "events", ["hall_id"], name: "index_events_on_hall_id", using: :btree
+
+  create_table "halls", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "total_seat"
+    t.string   "seat_view_file_name"
+    t.string   "seat_view_content_type"
+    t.integer  "seat_view_file_size"
+    t.datetime "seat_view_updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -74,13 +92,17 @@ ActiveRecord::Schema.define(version: 20150629091750) do
     t.decimal  "unit_price",  precision: 12, scale: 3
     t.integer  "quantity"
     t.decimal  "total_price", precision: 12, scale: 3
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
     t.string   "code"
+    t.integer  "seat_no"
+    t.boolean  "paid",                                 default: false
+    t.integer  "user_id"
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
   add_index "order_items", ["ticket_id"], name: "index_order_items_on_ticket_id", using: :btree
+  add_index "order_items", ["user_id"], name: "index_order_items_on_user_id", using: :btree
 
   create_table "order_statuses", force: :cascade do |t|
     t.string   "name"
@@ -101,8 +123,8 @@ ActiveRecord::Schema.define(version: 20150629091750) do
 
   create_table "payments", force: :cascade do |t|
     t.integer  "order_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.text     "notification_params"
     t.string   "status"
     t.string   "transaction_id"
@@ -110,6 +132,10 @@ ActiveRecord::Schema.define(version: 20150629091750) do
     t.integer  "user_id"
     t.string   "currency_type"
     t.decimal  "transaction_amount"
+    t.string   "qr_code_file_name"
+    t.string   "qr_code_content_type"
+    t.integer  "qr_code_file_size"
+    t.datetime "qr_code_updated_at"
   end
 
   add_index "payments", ["order_id"], name: "index_payments_on_order_id", using: :btree
@@ -129,6 +155,8 @@ ActiveRecord::Schema.define(version: 20150629091750) do
     t.integer  "event_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "max_seat_no"
+    t.integer  "min_seat_no"
   end
 
   create_table "users", force: :cascade do |t|
@@ -152,7 +180,10 @@ ActiveRecord::Schema.define(version: 20150629091750) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "authentications", "users"
+  add_foreign_key "discounts", "events"
+  add_foreign_key "events", "halls"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "tickets"
+  add_foreign_key "order_items", "users"
   add_foreign_key "orders", "order_statuses"
 end

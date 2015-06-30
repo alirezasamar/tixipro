@@ -1,6 +1,7 @@
 class DiscountsController < ApplicationController
   before_action :set_discount, only: [:show, :edit, :update, :destroy]
   before_action :set_ticket, except: [:index]
+  before_action :set_event
 
   # GET /discounts
   # GET /discounts.json
@@ -29,7 +30,7 @@ class DiscountsController < ApplicationController
 
     respond_to do |format|
       if @discount.save
-        format.html { redirect_to @discount, notice: 'Discount was successfully created.' }
+        format.html { redirect_to event_discounts_path(@event), notice: 'Discount was successfully created.' }
         format.json { render :show, status: :created, location: @discount }
       else
         format.html { render :new }
@@ -43,7 +44,7 @@ class DiscountsController < ApplicationController
   def update
     respond_to do |format|
       if @discount.update(discount_params)
-        format.html { redirect_to @discount, notice: 'Discount was successfully updated.' }
+        format.html { redirect_to event_discounts_path(@event), notice: 'Discount was successfully updated.' }
         format.json { render :show, status: :ok, location: @discount }
       else
         format.html { render :edit }
@@ -57,7 +58,7 @@ class DiscountsController < ApplicationController
   def destroy
     @discount.destroy
     respond_to do |format|
-      format.html { redirect_to discounts_url, notice: 'Discount was successfully destroyed.' }
+      format.html { redirect_to event_discount_path(@event, @discount), notice: 'Discount was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,11 +70,15 @@ class DiscountsController < ApplicationController
     end
 
     def set_ticket
-      @tickets = Ticket.all
+      @tickets = Ticket.where(event_id: params[:event_id])
+    end
+
+    def set_event
+      @event = Event.find(params[:event_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def discount_params
-      params.require(:discount).permit(:ticket_id, :discount_percentage, :code)
+      params.require(:discount).permit(:ticket_id, :discount_percentage, :code, :event_id)
     end
 end

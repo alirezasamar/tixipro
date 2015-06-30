@@ -22,6 +22,6 @@ class OrderItemsController < ApplicationController
 
   private
   def order_item_params
-    params.require(:order_item).permit(:quantity, :ticket_id, :code)
+    params.require(:order_item).permit(:quantity, :ticket_id, :code, :seat_no, :paid, :user_id)
   end
 end

@@ -8,7 +8,9 @@ class PaymentsController < ApplicationController
 
   # GET /registrations/1
   def show
-    @qr = RQRCode::QRCode.new( @payment.transaction_id, size: 2)
+    @qr = RQRCode::QRCode.new( @payment.transaction_id, size: 4, level: :h).to_img.resize(200, 200).to_data_url
+    @payment.update_attributes qr_code: @qr
+    session[:order_id] = nil
   end
 
   # GET /registrations/new
@@ -34,7 +36,16 @@ class PaymentsController < ApplicationController
     status = params[:payment_status]
     # if status == "Completed"
       @payment = Payment.find params[:invoice]
-      @payment.update_attributes notification_params: params, currency_type: params[:mc_currency], transaction_amount: params[:mc_gross], status: status, transaction_id: params[:txn_id], purchased_at: Time.now
+      @payment.update_attributes notification_params: params, currency_type: params[:mc_currency], transaction_amount: params[:mc_gross], status: status, transaction_id: SecureRandom.hex(10), purchased_at: Time.now
+
+      @order_item = OrderItem.where(order_id: @payment.order_id)
+      @order_item.each do |oi|
+        oi.update_attributes paid: true, user_id: @payment.user_id
+      end
+
+      @user = User.find(@payment.user_id)
+
+      TicketMailer.purchase_email(@user).deliver_now!
     # end
     render nothing: true
   end

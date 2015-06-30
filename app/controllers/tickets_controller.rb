@@ -45,7 +45,7 @@ class TicketsController < ApplicationController
   def update
     respond_to do |format|
       if @ticket.update(ticket_params)
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
+        format.html { redirect_to event_tickets_path(@event), notice: 'Ticket was successfully updated.' }
         format.json { render :show, status: :ok, location: @ticket }
       else
         format.html { render :edit }
@@ -64,6 +64,7 @@ class TicketsController < ApplicationController
     end
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket
@@ -76,6 +77,6 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:ticket_type, :price, :free, :quantity, :event_id)
+      params.require(:ticket).permit(:ticket_type, :price, :free, :quantity, :event_id, :max_seat_no, :min_seat_no)
     end
 end

@@ -2,7 +2,10 @@
 
 <h1>Listing Discounts</h1>
 
-<table>
+<%= link_to 'New Discount', new_event_discount_path(@event), class: 'btn btn-default' %>
+
+
+<table class="table">
   <thead>
     <tr>
       <th>Ticket</th>
@@ -18,14 +21,12 @@
         <td><%= Ticket.find(discount.ticket_id).ticket_type %></td>
         <td><%= discount.discount_percentage %>%</td>
         <td><%= discount.code %></td>
-        <td><%= link_to 'Show', discount %></td>
-        <td><%= link_to 'Edit', edit_discount_path(discount) %></td>
-        <td><%= link_to 'Destroy', discount, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', event_discount_path(@event, discount) %></td>
+        <td><%= link_to 'Edit', edit_event_discount_path(@event, discount) %></td>
+        <td><%= link_to 'Destroy', event_discounts_path(@event, discount), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Discount', new_discount_path %>

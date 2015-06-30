@@ -5,6 +5,8 @@ class OrderItem < ActiveRecord::Base
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validate :ticket_present
   validate :order_present
+  validate :seat_present
+  validates_uniqueness_of :seat_no, scope: :ticket_id, message: "Seat No: seat is already taken"
 
   before_save :finalize
 
@@ -33,6 +35,13 @@ class OrderItem < ActiveRecord::Base
       errors.add(:order, "is not a valid order.")
     end
   end
+
+  def seat_present
+    if seat_no.nil?
+      errors.add(:seat_no, "is not valid or is not active.")
+    end
+  end
+
 
   def finalize
     self[:unit_price] = unit_price

@@ -11,29 +11,30 @@
     </div>
   <% end %>
   <h1><%= @event.name %></h1>
-  <small>New Ticket</small>
 
   <div class="field">
     <%= f.number_field :event_id, value: @event.id, style: 'display: none' %>
   </div>
 
   <div class="field">
-    <%= f.label :ticket_type %><br>
-    <%= f.text_field :ticket_type %>
+    <%= f.input :ticket_type %>
   </div>
   <div class="field">
-    <%= f.label :price %><br>
-    <%= f.number_field :price %>
+    <%= f.input :min_seat_no %>
   </div>
   <div class="field">
-    <%= f.label :free %><br>
-    <%= f.check_box :free %>
+    <%= f.input :max_seat_no %>
   </div>
   <div class="field">
-    <%= f.label :quantity %><br>
-    <%= f.number_field :quantity %>
+    <%= f.input :price %>
+  </div>
+  <div class="field">
+    <%= f.input :free, as: :radio_buttons %>
+  </div>
+  <div class="field">
+    <%= f.input :quantity %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit, class: 'btn btn-default' %>
   </div>
 <% end %>

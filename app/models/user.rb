@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :events, :dependent => :destroy
   has_many :tickets
+  has_many :payments
   belongs_to :role
   has_many :authentications, dependent: :delete_all, autosave: true
   # Include default devise modules. Others available are:
