@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
 
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   resources :halls
   devise_for :users, :path => '/', controllers: {omniauth_callbacks: "authentications", registrations: "registrations"}
 
   scope "/admin" do
     resources :users
   end
-
-  mount Ckeditor::Engine => '/ckeditor'
 
   resources :events do
     resources :tickets

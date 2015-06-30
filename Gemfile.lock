@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/galetahub/ckeditor.git
-  revision: 692e8cb7c92ec2349cff1880cc542c3bbf5a86ae
-  specs:
-    ckeditor (4.1.2)
-      cocaine
-      orm_adapter (~> 0.5.0)
-
-GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: 36095bc0701a65054726af55b2689df9f7e75b9c
   specs:
@@ -69,10 +61,19 @@ GEM
     bootstrap-sass (3.3.5)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
+    bootsy (2.1.0)
+      carrierwave (~> 0.10)
+      mini_magick (~> 4.0)
+      remotipart (~> 1.2)
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
     cancancan (1.11.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     chunky_png (1.3.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -123,6 +124,7 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.6.1)
     mimemagic (0.3.0)
+    mini_magick (4.2.7)
     mini_portile (0.6.2)
     minitest (5.7.0)
     multi_json (1.11.1)
@@ -181,6 +183,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rqrcode (0.6.0)
@@ -236,9 +239,9 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   bootstrap-sass
+  bootsy
   byebug
   cancancan (~> 1.10)
-  ckeditor!
   coffee-rails (~> 4.1.0)
   devise
   figaro

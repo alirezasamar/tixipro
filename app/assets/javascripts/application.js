@@ -13,7 +13,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require bootsy
 //= require turbolinks
-//= require ckeditor/init
 //= require bootstrap
 //= require_tree .

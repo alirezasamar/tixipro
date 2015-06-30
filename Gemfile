@@ -37,13 +37,14 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'simple_form'
-gem 'ckeditor', github: 'galetahub/ckeditor'
+
 #Adding Gravatar
 gem 'gravtastic'
 gem 'cancancan', '~> 1.10'
 gem 'omniauth-facebook'
 gem "figaro"
 gem 'rqrcode_png'
+gem 'bootsy'
 
 gem 'rails_12factor', group: :production
 
