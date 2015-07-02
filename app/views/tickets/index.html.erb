@@ -12,7 +12,7 @@
       <th>Price</th>
       <th>Minimum Seat No</th>
       <th>Maximum Seat No</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -20,10 +20,9 @@
     <% @tickets.each do |ticket| %>
       <tr>
         <td><%= ticket.ticket_type %></td>
-        <td><%= ticket.price %></td>
-        <td><%= ticket.min_seat_no %></td>
-        <td><%= ticket.max_seat_no %></td>
+        <td><%= number_to_currency(ticket.price) %></td>
 
+        <td><%= link_to 'Add to Cart' , line_items_path(ticket_id: ticket), class: 'btn btn-primary'%></td>
         <td><%= link_to 'Show', event_ticket_path(@event, ticket) %></td>
         <% if can? :update, ticket %>
           <td><%= link_to 'Edit', edit_event_ticket_path(@event, ticket) %></td>
@@ -37,17 +36,4 @@
 </table>
 
 <br>
-
-<% else %>
-
-<h3 class="text-center">Tickets for Sale</h3>
-
-<div class="row">
-  <div class="col-xs-6 col-xs-offset-3">
-    <% @tickets.each do |ticket| %>
-      <%= render "ticket_row", ticket: ticket, order_item: @order_item %>
-    <% end %>
-  </div>
-</div>
-
 <% end %>

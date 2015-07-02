@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630053808) do
+ActiveRecord::Schema.define(version: 20150701181023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,22 +41,6 @@ ActiveRecord::Schema.define(version: 20150630053808) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "ckeditor_assets", force: :cascade do |t|
-    t.string   "data_file_name",               null: false
-    t.string   "data_content_type"
-    t.integer  "data_file_size"
-    t.integer  "assetable_id"
-    t.string   "assetable_type",    limit: 30
-    t.string   "type",              limit: 30
-    t.integer  "width"
-    t.integer  "height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "discounts", force: :cascade do |t|
     t.integer  "ticket_id"
@@ -99,41 +83,6 @@ ActiveRecord::Schema.define(version: 20150630053808) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
-
-  create_table "order_items", force: :cascade do |t|
-    t.integer  "ticket_id"
-    t.integer  "order_id"
-    t.decimal  "unit_price",  precision: 12, scale: 3
-    t.integer  "quantity"
-    t.decimal  "total_price", precision: 12, scale: 3
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
-    t.string   "code"
-    t.integer  "seat_no"
-    t.boolean  "paid",                                 default: false
-    t.integer  "user_id"
-  end
-
-  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
-  add_index "order_items", ["ticket_id"], name: "index_order_items_on_ticket_id", using: :btree
-  add_index "order_items", ["user_id"], name: "index_order_items_on_user_id", using: :btree
-
-  create_table "order_statuses", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.decimal  "subtotal",        precision: 12, scale: 3
-    t.decimal  "tax",             precision: 12, scale: 3
-    t.decimal  "total",           precision: 12, scale: 3
-    t.integer  "order_status_id"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-  end
-
-  add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.integer  "order_id"
@@ -196,8 +145,4 @@ ActiveRecord::Schema.define(version: 20150630053808) do
   add_foreign_key "authentications", "users"
   add_foreign_key "discounts", "events"
   add_foreign_key "events", "halls"
-  add_foreign_key "order_items", "orders"
-  add_foreign_key "order_items", "tickets"
-  add_foreign_key "order_items", "users"
-  add_foreign_key "orders", "order_statuses"
 end

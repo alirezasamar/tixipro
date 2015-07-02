@@ -10,8 +10,9 @@
       <%= form_for order_item, remote: true do |f| %>
       <h4 class="text-right">Unit Price: <span style="color: green"><%= number_to_currency ticket.price %></span></h4>
         <div class="input-group">
-          <% seats = ticket.min_seat_no..ticket.max_seat_no %>
-          <%= f.select(:seat_no, seats.collect {|d| [d.to_s,d.to_s]}, {:prompt => '-- Choose a Seat No --'} ) %>
+          <% seats = ticket.min_seat_no.upto(ticket.max_seat_no).to_a %>
+          <% final_seats = seats %>
+          <%= f.select(:seat_no, final_seats.collect {|d| [d.to_s,d.to_s]}, {:prompt => '-- Choose a Seat No --'} ) %>
 
           <%= f.hidden_field :quantity, value: 1, class: "form-control", min: 1 %>
           <div class="input-group-btn">

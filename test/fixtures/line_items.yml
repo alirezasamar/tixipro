@@ -1,13 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  unit_price: 9.99
-  ticket_id: 
-  cart_id: 
-  quantity: 1
+  product_id: 1
+  cart_id: 1
 
 two:
-  unit_price: 9.99
-  ticket_id: 
-  cart_id: 
-  quantity: 1
+  product_id: 1
+  cart_id: 1

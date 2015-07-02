@@ -22,7 +22,7 @@ class DiscountsController < ApplicationController
   # GET /discounts/1/edit
   def edit
   end
-
+  
   # POST /discounts
   # POST /discounts.json
   def create
@@ -58,7 +58,7 @@ class DiscountsController < ApplicationController
   def destroy
     @discount.destroy
     respond_to do |format|
-      format.html { redirect_to event_discount_path(@event, @discount), notice: 'Discount was successfully destroyed.' }
+      format.html { redirect_to event_discounts_path(@event), notice: 'Discount was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
