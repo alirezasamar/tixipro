@@ -22,7 +22,7 @@
         <td><%= ticket.ticket_type %></td>
         <td><%= number_to_currency(ticket.price) %></td>
 
-        <td><%= link_to 'Add to Cart' , line_items_path(ticket_id: ticket), class: 'btn btn-primary'%></td>
+        <td><%= button_to 'Add to Cart' , line_items_path(ticket_id: ticket) %></td>
         <td><%= link_to 'Show', event_ticket_path(@event, ticket) %></td>
         <% if can? :update, ticket %>
           <td><%= link_to 'Edit', edit_event_ticket_path(@event, ticket) %></td>
