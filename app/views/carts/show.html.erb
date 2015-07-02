@@ -1,6 +1,35 @@
-<h2>Your Pragmatic Cart</h2>
-<ul>
-<% @cart.line_items.each do |item| %>
-<li><%= item.ticket.ticket_type %></li>
-<% end %>
-</ul>
+<h2 style="display:inline">Your Cart</h2>&nbsp&nbsp
+<%= link_to 'Empty cart' , @cart, method: :delete, confirm: 'Are you sure?', class: 'btn btn-danger' %>
+<%= link_to 'Ticket selection', store_url , class: 'btn btn-default' %>
+
+<br><br>
+<table class="table">
+  <% for item in @cart.line_items %>
+    <%= simple_form_for item do |f|%>
+      <tr>
+        <td><%= item.ticket.ticket_type %></td>
+        <td class="item_price" ><%= number_to_currency(item.total_price_after_discount) %></td>
+        <td>
+        <% if item.ticket.min_seat_no == 0 || item.ticket.max_seat_no == 0  %>
+          <%= f.select(:quantity, item.remaining_seats.collect {|d| [d.to_s,d.to_s]}, {include_blank: "Select Quantity"} )%></td>
+          <td><%= f.submit "Update Qty", class: 'btn btn-primary' %></td>
+        <% else %>
+          <%= f.select :seat_no, item.seats %>
+          <td><%= f.submit "Select Seat", class: 'btn btn-primary' %></td>
+        <% end %>
+        </td>
+        <td>
+          <%= link_to 'Remove ticket', item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+
+          <%= f.input :code %>
+          <%= f.submit "Validate Code", class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <%  end %>
+  <% end %>
+
+  <tr class="total_line" >
+    <td colspan="2" >Total</td>
+    <td class="total_cell" ><%= number_to_currency(@cart.total_price) %></td>
+  </tr>
+</table>
