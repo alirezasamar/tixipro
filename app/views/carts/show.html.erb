@@ -7,29 +7,38 @@
   <% for item in @cart.line_items %>
     <%= simple_form_for item do |f|%>
       <tr>
-        <td><%= item.ticket.ticket_type %></td>
+        <td>
+          <%= item.ticket.ticket_type %><br></br>
+          <% if item.ticket.free == true %>
+            Remaining seats : <%= item.remaining_seats_by_quantity %> / <%= item.ticket.quantity %>
+          <% else %>
+            Seat No: <%= item.seat_no %>
+          <% end %>
+        </td>
         <td class="item_price" ><%= number_to_currency(item.total_price_after_discount) %></td>
         <td>
-        <% if item.ticket.min_seat_no == 0 || item.ticket.max_seat_no == 0  %>
-          <%= f.select(:quantity, item.remaining_seats.collect {|d| [d.to_s,d.to_s]}, {include_blank: "Select Quantity"} )%></td>
-          <td><%= f.submit "Update Qty", class: 'btn btn-primary' %></td>
-        <% else %>
-          <%= f.select :seat_no, item.seats %>
-          <td><%= f.submit "Select Seat", class: 'btn btn-primary' %></td>
-        <% end %>
+          <% if item.ticket.free == true %>
+            <td><%= f.input :quantity, value: item.quantity %></td>
+            <td><%= f.submit "Update Qty", class: 'btn btn-primary' %></td>
+          <% else %>
+            <% seats = item.total_seats.reject{ |e| item.all_taken_seat.include? e } %>
+            <td><%= f.select :seat_no, seats %></td>
+            <td><%= f.submit "Select Seat", class: 'btn btn-primary' %></td>
+          <% end %>
+
+        <td><%= f.input :code %></td>
+        <td><%= f.submit "Validate Code", class: 'btn btn-primary' %></td>
+
         </td>
         <td>
           <%= link_to 'Remove ticket', item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-
-          <%= f.input :code %>
-          <%= f.submit "Validate Code", class: 'btn btn-primary' %>
         </td>
       </tr>
     <%  end %>
   <% end %>
 
   <tr class="total_line" >
-    <td colspan="2" >Total</td>
+    <td colspan="1" >Total</td>
     <td class="total_cell" ><%= number_to_currency(@cart.total_price) %></td>
   </tr>
 </table>

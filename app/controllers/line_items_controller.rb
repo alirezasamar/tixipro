@@ -26,11 +26,16 @@ class LineItemsController < ApplicationController
   def create
     @cart = current_cart
     ticket = Ticket.find(params[:ticket_id])
-    @line_item = @cart.line_items.build(ticket: ticket)
+
+    if ticket.free == true
+      @line_item = @cart.add_ticket(ticket.id)
+    else
+      @line_item = @cart.line_items.build(ticket: ticket)
+    end
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item.cart, notice: 'Line item was successfully created.' }
+        format.html { redirect_to @line_item.cart, notice: 'Ticket was successfully added to your cart.' }
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
@@ -44,10 +49,10 @@ class LineItemsController < ApplicationController
   def update
     respond_to do |format|
       if @line_item.update(line_item_params)
-        format.html { redirect_to @line_item.cart, notice: 'Line item was successfully updated.' }
+        format.html { redirect_to @line_item.cart, notice: 'Ticket was successfully updated in your cart.' }
         format.json { render :show, status: :ok, location: @line_item }
       else
-        format.html { render :edit }
+        format.html { redirect_to @line_item.cart, alert: 'Seat already taken' }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end
@@ -58,7 +63,7 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to @line_item.cart, notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to @line_item.cart, notice: 'Ticket was successfully removed from your cart.' }
       format.json { head :no_content }
     end
   end
@@ -71,6 +76,6 @@ class LineItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_item_params
-      params.require(:line_item).permit(:ticket_id, :cart_id, :quantity, :code)
+      params.require(:line_item).permit(:ticket_id, :cart_id, :quantity, :code, :seat_no)
     end
 end
