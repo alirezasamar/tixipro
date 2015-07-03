@@ -14,10 +14,14 @@
     <p>Amount Paid: <%= @transaction.transaction_amount %></p>
     <p>Payment Date and Time: <%= @transaction.purchased_at.strftime(" %d/%m/%Y at %I:%M%p") %></p>
     <br>
-      <% @tickets = @transaction.order.order_items %>
+      <% @tickets = @transaction.cart.line_items %>
       <% @tickets.each do |ticket| %>
         <p>Ticket type: <%= Ticket.find(ticket.ticket_id).ticket_type %></p>
-        <p>Seat No: <%= ticket.seat_no %></p>
+        <% if ticket.seat_no >= 0 || ticket.seat_no.nil? %>
+          <p>Seat No: Free seating</p>
+        <% else %>
+          <p>Seat No: <%= ticket.seat_no %></p>
+        <% end %>
       <% end %>
       <hr>
     <br>

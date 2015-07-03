@@ -21,16 +21,34 @@ class LineItemsController < ApplicationController
   def edit
   end
 
+  # def promo
+  #   @cart = current_cart
+  #   @line_item = LineItem.where(cart: @cart.id, id: self_id)
+  #
+  #   @line_item.update_attributes code: params[:code]
+  #   redirect_to @line_item.cart
+  #   # ticket = Ticket.find(params[:ticket_id])
+  #   #
+  #   # discount = Discount.find_by ticket_id: ticket.id
+  #   # if discount.code == params[:code]
+  #   #   asd
+  #   #   (ticket.price * quantity).to_f * (discount.discount_percentage.to_f / 100)
+  #   # else
+  #   #   ticket.price * quantity
+  #   # end
+  #
+  # end
+
   # POST /line_items
   # POST /line_items.json
   def create
     @cart = current_cart
-    ticket = Ticket.find(params[:ticket_id])
+    @ticket = Ticket.find(params[:ticket_id])
 
-    if ticket.free == true
-      @line_item = @cart.add_ticket(ticket.id)
+    if @ticket.free == true
+      @line_item = @cart.add_ticket(@ticket.id)
     else
-      @line_item = @cart.line_items.build(ticket: ticket)
+      @line_item = @cart.line_items.build(ticket: @ticket)
     end
 
     respond_to do |format|

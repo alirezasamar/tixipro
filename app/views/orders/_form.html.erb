@@ -1,0 +1,29 @@
+<h2 style="display:inline">Confirm Order</h2>
+
+<br><br>
+<table class="table">
+  <% for item in @cart.line_items %>
+      <tr>
+        <td>
+          <%= item.ticket.ticket_type %> &times <%= item.quantity %>
+          <br></br>
+          <% if item.ticket.free == true %>
+            Seat No: Free seating
+          <% else %>
+            Seat No: <%= item.seat_no %>
+          <% end %>
+        </td>
+        <td class="item_price" ><%= number_to_currency(item.total_price_after_discount) %></td>
+
+          <%= simple_form_for item do |f|%>
+            <td><%= f.input :code %></td>
+            <td><%= f.submit "Validate Code", class: 'btn btn-primary' %></td>
+          <% end %>
+      </tr>
+  <% end %>
+
+  <tr class="total_line" >
+    <td>Total</td>
+    <td class="total_cell" ><%= number_to_currency(@cart.total_price) %></td>
+  </tr>
+</table>

@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  address: MyText
-  email: MyString
-  pay_type: MyString
+  line_item_id: 
+  total_price: 1
+  promo_code: MyString
+  paid: false
 
 two:
-  name: MyString
-  address: MyText
-  email: MyString
-  pay_type: MyString
+  line_item_id: 
+  total_price: 1
+  promo_code: MyString
+  paid: false

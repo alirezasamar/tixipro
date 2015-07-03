@@ -20,13 +20,10 @@
             </div>
           <% end %>
           <div class="field">
-            <%= f.hidden_field :order_id, value: @order.id %>
-          </div>
-          <div class="field">
             <%= f.hidden_field :user_id, value: current_user.id %>
           </div>
           <div class="col-xs-4">
-            <h4 class="text-right">Subtotal: <span style="color: green"><%= number_to_currency current_order.subtotal %></span></h4>
+            <h4 class="text-right">Subtotal: <span style="color: green"><%= number_to_currency(@cart.total_price) %></span></h4>
           </div>
           <div class="actions">
             <%= f.submit "", type: :image, src: "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" %>

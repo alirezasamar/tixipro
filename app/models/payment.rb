@@ -1,10 +1,18 @@
 class Payment < ActiveRecord::Base
-  belongs_to :order
   belongs_to :event
   belongs_to :user
+  belongs_to :cart
+  has_many :line_items, :dependent => :destroy
 
   has_attached_file :qr_code, styles: { small: "64x64", med: "100x100", large: "200x200" }
   validates_attachment :qr_code, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+
+  # def add_line_items_from_cart(cart)
+  #   cart.line_items.each do |item|
+  #     item.cart_id = nil
+  #     line_items << item
+  #   end
+  # end
 
 
   serialize :notification_params, Hash
@@ -18,9 +26,9 @@ class Payment < ActiveRecord::Base
         notify_url: "#{Rails.application.secrets.app_host}/hook"
     }
 
-    order.order_items.each_with_index do |item, index|
+    line_items.each_with_index do |item, index|
       values.merge!({
-        "amount_#{index+1}" => item.unit_price,
+        "amount_#{index+1}" => item.total_price_after_discount,
         "item_name_#{index+1}" => item.ticket.ticket_type,
         "item_number_#{index+1}" => item.seat_no,
         "quantity_#{index+1}" => item.quantity

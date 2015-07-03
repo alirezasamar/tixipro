@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702055648) do
+ActiveRecord::Schema.define(version: 20150702131427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,12 +92,27 @@ ActiveRecord::Schema.define(version: 20150702055648) do
   create_table "line_items", force: :cascade do |t|
     t.integer  "ticket_id"
     t.integer  "cart_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "quantity",   default: 1
-    t.integer  "seat_no"
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.integer  "quantity",                             default: 1
+    t.integer  "seat_no"                               default: 0
     t.string   "code"
+    t.decimal  "total_price", precision: 12, scale: 3
+    t.integer  "payment_id"
   end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "line_item_id"
+    t.integer  "user_id"
+    t.integer  "total_price"
+    t.string   "promo_code"
+    t.boolean  "paid"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "orders", ["line_item_id"], name: "index_orders_on_line_item_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.integer  "order_id"
@@ -114,6 +129,7 @@ ActiveRecord::Schema.define(version: 20150702055648) do
     t.string   "qr_code_content_type"
     t.integer  "qr_code_file_size"
     t.datetime "qr_code_updated_at"
+    t.integer  "cart_id"
   end
 
   add_index "payments", ["order_id"], name: "index_payments_on_order_id", using: :btree
@@ -160,4 +176,6 @@ ActiveRecord::Schema.define(version: 20150702055648) do
   add_foreign_key "authentications", "users"
   add_foreign_key "discounts", "events"
   add_foreign_key "events", "halls"
+  add_foreign_key "orders", "line_items"
+  add_foreign_key "orders", "users"
 end

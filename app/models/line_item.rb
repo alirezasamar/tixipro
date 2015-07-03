@@ -1,13 +1,14 @@
 class LineItem < ActiveRecord::Base
   belongs_to :ticket
   belongs_to :cart
-
-  validates_uniqueness_of :seat_no, scope: :ticket_id
+  belongs_to :payment
 
   def total_price_after_discount
     discount = Discount.find_by ticket_id: ticket.id
     if discount.code == self[:code]
-      (ticket.price * quantity).to_f * (discount.discount_percentage.to_f / 100)
+      initial_amount = (ticket.price * quantity).to_f
+      discounted_total = initial_amount * (discount.discount_percentage.to_f / 100)
+      initial_amount - discounted_total
     else
       ticket.price * quantity
     end

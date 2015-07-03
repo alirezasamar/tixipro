@@ -22,8 +22,10 @@
             <td><%= f.submit "Update Qty", class: 'btn btn-primary' %></td>
           <% else %>
             <% seats = item.total_seats.reject{ |e| item.all_taken_seat.include? e } %>
-            <td><%= f.select :seat_no, seats %></td>
-            <td><%= f.submit "Select Seat", class: 'btn btn-primary' %></td>
+            <% if item.seat_no == 0 || item.seat_no.nil? %>
+              <td><%= f.select :seat_no, seats %></td>
+              <td><%= f.submit "Select Seat", class: 'btn btn-primary' %></td>
+            <% end %>
           <% end %>
 
         <td><%= f.input :code %></td>
@@ -42,3 +44,5 @@
     <td class="total_cell" ><%= number_to_currency(@cart.total_price) %></td>
   </tr>
 </table>
+
+<%= link_to "Checkout" , new_payment_path, class: 'btn btn-success' %>

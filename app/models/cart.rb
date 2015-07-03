@@ -15,4 +15,5 @@ class Cart < ActiveRecord::Base
   def total_price
     line_items.collect { |item| item.valid? ? item.total_price_after_discount : 0 }.sum
   end
+
 end
