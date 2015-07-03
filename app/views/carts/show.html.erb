@@ -3,6 +3,14 @@
 <%= link_to 'Ticket selection', store_url , class: 'btn btn-default' %>
 
 <br><br>
+<h5 style="text-align:center">Your ticket purchase session will be kept for ten minutes.
+Failing which that ticket will be released and you will have to redo the ticketing process again.
+</h5>
+<h3 style="text-align:center">
+
+  <div id="timer"></div>
+</h3>
+<br>
 <table class="table">
   <% for item in @cart.line_items %>
     <%= simple_form_for item do |f|%>
@@ -47,3 +55,17 @@
 </table>
 
 <%= link_to "Checkout" , new_payment_path, class: 'btn btn-success' %>
+
+
+<script type="text/javascript">
+//start a timer & execute a function every 30 seconds and then reset the timer at the end of 30 seconds.
+$('#timer').timer({
+    format: '%M minutes %s seconds',
+    duration: '10m',
+    callback: function() {
+        alert('Time up!');
+        $('#timer').timer('reset');
+    },
+    repeat: true //repeatedly call the callback
+});
+</script>

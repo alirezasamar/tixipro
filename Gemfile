@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn', group: :production
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -68,6 +68,18 @@ gem 'bootsy'
 # for pdf
 gem 'receipts'
 
+# cron jobs
+gem 'whenever', :require => false
+
+# The most lovely gem ever
+gem 'mina'
+
+# mina's sidekiq helper
+gem 'mina-sidekiq', :require => false
+
+# mina's unicorn helper
+gem 'mina-unicorn', :require => false
+
 # Heroku bug fix
 gem 'rails_12factor', group: :production
 
@@ -80,7 +92,7 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  
+
   # Nicer errors
   gem 'better_errors'
 end

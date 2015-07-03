@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootsy
+//= require timer.jquery
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
