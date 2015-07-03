@@ -1,0 +1,32 @@
+<h1> My Tickets </h1>
+<small>Only Paid Tickets will be shown here</small>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Ticket</th>
+      <th>Quantity</th>
+      <th>Seat No / Free seating</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @my_tickets.each do |mt| %>
+      <tr>
+        <td><%= mt.ticket.event.name %></td>
+        <td><%= mt.ticket.ticket_type %></td>
+        <td><%= mt.quantity %></td>
+        <td>
+          <% if mt.seat_no == 0 || mt.seat_no.nil? %>
+            Free Seating
+          <% else %>
+            <%= mt.seat_no %>
+          <% end %>
+        </td>
+        <td><%= link_to "Download Ticket", line_item_path(mt.id, format: :pdf), target: '_blank' %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
