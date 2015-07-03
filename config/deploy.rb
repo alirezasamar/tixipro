@@ -71,7 +71,7 @@ task :deploy => :environment do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
-    invoke :'rails:db_setup'
+    invoke :'rake db:setup'
     invoke :'rails:assets_precompile'
 
     to :launch do
