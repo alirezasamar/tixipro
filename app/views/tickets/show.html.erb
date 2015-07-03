@@ -9,18 +9,8 @@
 </p>
 
 <p>
-  <strong>Free:</strong>
-  <%= @ticket.free %>
-</p>
-
-<p>
-  <strong>Quantity:</strong>
-  <%= @ticket.quantity %>
-</p>
-
-<p>
   <strong>Event:</strong>
-  <%= @ticket.event_id %>
+  <%= @ticket.event.name %>
 </p>
 
 <%= link_to 'Edit', edit_event_ticket_path(@event, @ticket) %> |

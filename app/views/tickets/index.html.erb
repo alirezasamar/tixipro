@@ -1,17 +1,24 @@
 
-<% if can? :create, @event %>
 <h1>Listing Tickets</h1>
+<% if can? :create, @event %>
+  <%= link_to 'Add ticket', new_event_ticket_path(@event), class: 'btn btn-default' %>
+<% end %>
 
-<%= link_to 'Add ticket', new_event_ticket_path(@event), class: 'btn btn-default' %>
+<% if @tickets.empty? %>
+  <h1>Sorry. The tickets not released yet.</h1>
 
-
+<% else %>
 <table class="table">
   <thead>
     <tr>
       <th>Ticket type</th>
       <th>Price</th>
-      <th>Minimum Seat No</th>
-      <th>Maximum Seat No</th>
+      <% if @event.free_seating? %>
+        <th>Quantity</th>
+      <% else %>
+        <th>Minimum Seat No</th>
+        <th>Maximum Seat No</th>
+      <% end %>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -21,9 +28,14 @@
       <tr>
         <td><%= ticket.ticket_type %></td>
         <td><%= number_to_currency(ticket.price) %></td>
+        <% if @event.free_seating? %>
+          <td><%= ticket.quantity %></td>
+        <% else %>
+          <td><%= ticket.min_seat_no %></td>
+          <td><%= ticket.max_seat_no %></td>
+        <% end %>
 
         <td><%= button_to 'Add to Cart' , line_items_path(ticket_id: ticket) %></td>
-        <td><%= link_to 'Show', event_ticket_path(@event, ticket) %></td>
         <% if can? :update, ticket %>
           <td><%= link_to 'Edit', edit_event_ticket_path(@event, ticket) %></td>
         <% end %>
@@ -35,5 +47,4 @@
   </tbody>
 </table>
 
-<br>
 <% end %>

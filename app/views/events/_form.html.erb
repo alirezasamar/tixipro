@@ -24,6 +24,14 @@
     <%= f.input :venue %>
   </div>
   <div class="field">
+    <%= f.label :Hall, required: true %><br>
+    <%= f.collection_select(:hall_id, Hall.all, :id, :name, prompt: 'Select Hall') %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.input :free_seating, as: :radio_buttons %>
+  </div>
+  <div class="field">
     <%= f.input :description, as: :bootsy %>
   </div>
   <div class="field">

@@ -9,16 +9,17 @@
       <tr>
         <td>
           <%= item.ticket.ticket_type %><br></br>
-          <% if item.ticket.free == true %>
+          <% if item.ticket.event.free_seating? %>
             Remaining seats : <%= item.remaining_seats_by_quantity %> / <%= item.ticket.quantity %>
           <% else %>
             Seat No: <%= item.seat_no %>
           <% end %>
         </td>
-        <td class="item_price" ><%= number_to_currency(item.total_price_after_discount) %></td>
+        <td>Unit price: <%= number_to_currency(item.total_price_after_discount) %></td>
         <td>
-          <% if item.ticket.free == true %>
-            <td><%= f.input :quantity, value: item.quantity %></td>
+          <% if item.ticket.event.free_seating? %>
+            <td><%= f.label :quantity %></td>
+            <td><%= f.select :quantity, 1..item.ticket.quantity, value: item.quantity %></td>
             <td><%= f.submit "Update Qty", class: 'btn btn-primary' %></td>
           <% else %>
             <% seats = item.total_seats.reject{ |e| item.all_taken_seat.include? e } %>

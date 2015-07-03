@@ -16,6 +16,7 @@
     <br>
       <% @tickets = @transaction.cart.line_items %>
       <% @tickets.each do |ticket| %>
+        <p>Event: <%= Ticket.find(ticket.ticket_id).event.name %></p>
         <p>Ticket type: <%= Ticket.find(ticket.ticket_id).ticket_type %></p>
         <% if ticket.seat_no == 0 || ticket.seat_no.nil? %>
           <p>Seat No: Free seating</p>

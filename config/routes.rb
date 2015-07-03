@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :orders
   resources :line_items
   resources :carts
-  get 'store/index'
+  # get 'store/index'
 
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
 
@@ -28,7 +27,7 @@ Rails.application.routes.draw do
   get "/my_tickets" => "line_items#my_tickets"
 
   authenticated :user do
-    # root :to => 'events#index', as: :authenticated_root
+    root :to => 'events#index', as: :authenticated_root
   end
   root :to => 'store#index' , :as => 'store'
 

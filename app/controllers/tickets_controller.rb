@@ -6,7 +6,7 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.where(event_id: @event)
   end
 
   # GET /tickets/1
@@ -26,6 +26,13 @@ class TicketsController < ApplicationController
   # POST /tickets
   # POST /tickets.json
   def create
+    # if params[:min_seat_no].to_i != 0 && params[:max_seat_no].to_i != 0
+    #   quantity = (params[:max_seat_no].to_i - params[:min_seat_no].to_i) + 1
+    #   params[:quantity] == quantity
+    #   @ticket = Ticket.new(ticket_params)
+    # else
+    # end
+
     @ticket = Ticket.new(ticket_params)
 
     respond_to do |format|
@@ -76,6 +83,6 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:ticket_type, :price, :free, :quantity, :event_id, :max_seat_no, :min_seat_no)
+      params.require(:ticket).permit(:ticket_type, :price, :quantity, :event_id, :max_seat_no, :min_seat_no)
     end
 end

@@ -14,8 +14,6 @@
       <th>Genre</th>
       <th>Start</th>
       <th>End</th>
-      <th>Add ticket</td>
-      <th>Add discount</td>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -27,15 +25,15 @@
         <td><%= event.name %></td>
         <td><%= event.description.html_safe %></td>
         <td><%= event.genre %></td>
-        <td><%= event.start %></td>
-        <td><%= event.end %></td>
+        <td><%= event.start.strftime("%e %b %Y %H:%M:%S%p") %></td>
+        <td><%= event.end.strftime("%e %b %Y %H:%M:%S%p") %></td>
         <% if can? :create, event %>
           <td><%= link_to 'Add ticket', new_event_ticket_path(event) %></td>
         <% end %>
         <% if can? :create, event %>
           <td><%= link_to 'Add discount', new_event_discount_path(event) %></td>
         <% end %>
-        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Buy tickets', event_tickets_path(event) %></td>
         <% if can? :update, event %>
           <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <% end %>

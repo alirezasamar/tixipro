@@ -19,20 +19,20 @@
   <div class="field">
     <%= f.input :ticket_type %>
   </div>
-  <div class="field">
-    <%= f.input :min_seat_no %>
-  </div>
-  <div class="field">
-    <%= f.input :max_seat_no %>
-  </div>
+  <% if @event.free_seating == false %>
+    <div class="field">
+      <%= f.input :min_seat_no %>
+    </div>
+    <div class="field">
+      <%= f.input :max_seat_no %>
+    </div>
+  <% else %>
+    <div class="field">
+      <%= f.input :quantity %>
+    </div>
+  <% end %>
   <div class="field">
     <%= f.input :price %>
-  </div>
-  <div class="field">
-    <%= f.input :free, as: :radio_buttons %>
-  </div>
-  <div class="field">
-    <%= f.input :quantity %>
   </div>
   <div class="actions">
     <%= f.button :submit, class: 'btn btn-default' %>

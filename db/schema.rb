@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702131427) do
+ActiveRecord::Schema.define(version: 20150703090550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(version: 20150702131427) do
     t.string   "genre"
     t.datetime "start"
     t.datetime "end"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "cover_image_file_name"
     t.string   "cover_image_content_type"
     t.integer  "cover_image_file_size"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20150702131427) do
     t.string   "venue"
     t.integer  "user_id"
     t.integer  "hall_id"
+    t.boolean  "free_seating",             default: false
   end
 
   add_index "events", ["hall_id"], name: "index_events_on_hall_id", using: :btree
@@ -95,27 +96,13 @@ ActiveRecord::Schema.define(version: 20150702131427) do
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
     t.integer  "quantity",                             default: 1
-    t.integer  "seat_no"                               default: 0
+    t.integer  "seat_no",                              default: 0
     t.string   "code"
     t.decimal  "total_price", precision: 12, scale: 3
     t.integer  "payment_id"
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.integer  "line_item_id"
-    t.integer  "user_id"
-    t.integer  "total_price"
-    t.string   "promo_code"
-    t.boolean  "paid"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "orders", ["line_item_id"], name: "index_orders_on_line_item_id", using: :btree
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
-
   create_table "payments", force: :cascade do |t|
-    t.integer  "order_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.text     "notification_params"
@@ -132,8 +119,6 @@ ActiveRecord::Schema.define(version: 20150702131427) do
     t.integer  "cart_id"
   end
 
-  add_index "payments", ["order_id"], name: "index_payments_on_order_id", using: :btree
-
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -147,10 +132,10 @@ ActiveRecord::Schema.define(version: 20150702131427) do
     t.boolean  "free"
     t.integer  "quantity"
     t.integer  "event_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "min_seat_no"
-    t.integer  "max_seat_no"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.integer  "max_seat_no",                         default: 0
+    t.integer  "min_seat_no",                         default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -176,6 +161,4 @@ ActiveRecord::Schema.define(version: 20150702131427) do
   add_foreign_key "authentications", "users"
   add_foreign_key "discounts", "events"
   add_foreign_key "events", "halls"
-  add_foreign_key "orders", "line_items"
-  add_foreign_key "orders", "users"
 end

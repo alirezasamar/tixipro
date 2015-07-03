@@ -6,17 +6,10 @@ class Ability
     can :read, Event
     if user.admin?
       can :manage, :all
-    elsif user.organizer?
+    elsif user.curator?
       can :read, Event, Ticket
-      can :create, Event, Ticket
-      can :update, Event do |event|
-        event.try(:user) == user
-      end
-      can :destroy, Event do |event|
-        event.try(:user) == user
-      end
     elsif user.regular?
-      can :read, Event
+      can :read, Event, Ticket
     end
   end
 end

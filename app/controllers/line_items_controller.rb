@@ -10,7 +10,16 @@ class LineItemsController < ApplicationController
   # GET /line_items/1
   # GET /line_items/1.json
   def show
-  end
+     respond_to do |format|
+       format.pdf {
+         send_data @line_item.receipt.render,
+           filename: "#{@line_item.created_at.strftime("%Y-%m-%d")}-diversecity-ticket.pdf",
+           type: "application/pdf",
+           disposition: :inline
+       }
+     end
+   end
+
 
   # GET /line_items/new
   def new

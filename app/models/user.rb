@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
     self.role.name == "Admin"
   end
 
-  def organizer?
-    self.role.name == "Organizer"
+  def curator?
+    self.role.name == "Curator"
   end
 
   def regular?

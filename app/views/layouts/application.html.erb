@@ -19,10 +19,8 @@
       <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
           <li><p class="navbar-text"><%=link_to 'My Tickets', my_tickets_path if user_signed_in? %></p></li>
-
-
+          
         </ul>
-
        <ul class="nav navbar-nav navbar-right">
         <li><p class="navbar-text"><%=link_to current_user.email, edit_user_registration_path if user_signed_in? %></p></li>
         <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) if user_signed_in? %></li>
