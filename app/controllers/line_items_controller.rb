@@ -21,6 +21,10 @@ class LineItemsController < ApplicationController
   def edit
   end
 
+  def my_tickets
+    @my_tickets = LineItem.joins(:payment).where(payments: { user_id: current_user })
+  end
+
   # def promo
   #   @cart = current_cart
   #   @line_item = LineItem.where(cart: @cart.id, id: self_id)

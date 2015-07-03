@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   post "/payments/:id" => "payments#show"
   post "/hook" => "payments#hook"
 
+  get "/my_tickets" => "line_items#my_tickets"
+
   authenticated :user do
     # root :to => 'events#index', as: :authenticated_root
   end

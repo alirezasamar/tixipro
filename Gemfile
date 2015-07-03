@@ -32,20 +32,43 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Faster server
 gem 'thin'
+
+# Authentication
 gem 'devise'
+
+# bootstrap
 gem 'bootstrap-sass'
+
+# Image attachment
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+
+# nicer form
 gem 'simple_form'
 
 #Adding Gravatar
 gem 'gravtastic'
+
+# Authorization
 gem 'cancancan', '~> 1.10'
+
+# fb login
 gem 'omniauth-facebook'
+
+# ENV
 gem "figaro"
+
+#QR code
 gem 'rqrcode_png'
+
+# Editor
 gem 'bootsy'
 
+# for pdf
+gem 'receipts'
+
+# Heroku bug fix
 gem 'rails_12factor', group: :production
 
 group :development, :test do
@@ -57,6 +80,7 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
+  
+  # Nicer errors
   gem 'better_errors'
 end

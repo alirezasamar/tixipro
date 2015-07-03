@@ -17,7 +17,7 @@
       <% @tickets = @transaction.cart.line_items %>
       <% @tickets.each do |ticket| %>
         <p>Ticket type: <%= Ticket.find(ticket.ticket_id).ticket_type %></p>
-        <% if ticket.seat_no >= 0 || ticket.seat_no.nil? %>
+        <% if ticket.seat_no == 0 || ticket.seat_no.nil? %>
           <p>Seat No: Free seating</p>
         <% else %>
           <p>Seat No: <%= ticket.seat_no %></p>

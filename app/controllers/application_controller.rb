@@ -20,6 +20,15 @@ class ApplicationController < ActionController::Base
     cart
   end
 
+
+  #  def current_cart
+  #    if !session[:cart_id].nil?
+  #      Cart.find(session[:cart_id])
+  #    else
+  #      Cart.new
+  #    end
+  #  end
+
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :role_id, :email, :password, :password_confirmation) }
