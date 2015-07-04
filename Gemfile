@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn', group: :production
+gem 'unicorn', group: :production
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -75,10 +75,10 @@ gem 'whenever', :require => false
 gem 'mina'
 
 # mina's sidekiq helper
-# gem 'mina-sidekiq', :require => false
+gem 'mina-sidekiq', :require => false
 
 # mina's unicorn helper
-# gem 'mina-unicorn', :require => false
+gem 'mina-unicorn', :require => false
 
 # Heroku bug fix
 gem 'rails_12factor', group: :production
