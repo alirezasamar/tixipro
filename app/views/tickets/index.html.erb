@@ -13,27 +13,16 @@
     <tr>
       <th>Ticket type</th>
       <th>Price</th>
-      <% if @event.free_seating? %>
-        <th>Quantity</th>
-      <% else %>
-        <th>Minimum Seat No</th>
-        <th>Maximum Seat No</th>
-      <% end %>
       <th colspan="4"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @tickets.each do |ticket| %>
+    <% if ticket.remaining_seats_by_quantity > 0 %>
       <tr>
         <td><%= ticket.ticket_type %></td>
         <td><%= number_to_currency(ticket.price) %></td>
-        <% if @event.free_seating? %>
-          <td><%= ticket.quantity %></td>
-        <% else %>
-          <td><%= ticket.min_seat_no %></td>
-          <td><%= ticket.max_seat_no %></td>
-        <% end %>
 
         <td><%= button_to 'Add to Cart' , line_items_path(ticket_id: ticket) %></td>
         <% if can? :update, ticket %>
@@ -43,6 +32,7 @@
           <td><%= link_to 'Destroy', event_ticket_path(@event, ticket) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

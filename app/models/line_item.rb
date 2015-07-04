@@ -17,7 +17,7 @@ class LineItem < ActiveRecord::Base
         ticket.price
       end
     else
-      ticket.price * quantity
+      ticket.price
     end
   end
 
@@ -34,6 +34,12 @@ class LineItem < ActiveRecord::Base
   def all_taken_seat
     line_items = LineItem.all
     line_items.pluck(:seat_no)
+  end
+
+  def booking_quantity_cannot_be_greater_than_total_quantity
+  	if self.quantity.to_i > ticket.quantity.to_i
+      errors.add(:quantity, "can't be greater than total quantity")
+    end
   end
 
   def receipt

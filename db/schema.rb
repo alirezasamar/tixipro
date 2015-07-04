@@ -81,24 +81,23 @@ ActiveRecord::Schema.define(version: 20150703090550) do
   create_table "halls", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "total_seat"
+    t.integer  "total_seat",             default: 0
     t.string   "seat_view_file_name"
     t.string   "seat_view_content_type"
     t.integer  "seat_view_file_size"
     t.datetime "seat_view_updated_at"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "line_items", force: :cascade do |t|
     t.integer  "ticket_id"
     t.integer  "cart_id"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-    t.integer  "quantity",                             default: 1
-    t.integer  "seat_no",                              default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "quantity",   default: 1
+    t.integer  "seat_no",    default: 0
     t.string   "code"
-    t.decimal  "total_price", precision: 12, scale: 3
     t.integer  "payment_id"
   end
 

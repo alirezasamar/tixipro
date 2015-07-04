@@ -27,7 +27,7 @@ Failing which that ticket will be released and you will have to redo the ticketi
         <td>
           <% if item.ticket.event.free_seating? %>
             <td><%= f.label :quantity %></td>
-            <td><%= f.select :quantity, 1..item.ticket.quantity, value: item.quantity %></td>
+            <td><%= f.select :quantity, 0..item.remaining_seats_by_quantity, value: item.quantity %></td>
             <td><%= f.submit "Update Qty", class: 'btn btn-primary' %></td>
           <% else %>
             <% seats = item.total_seats.reject{ |e| item.all_taken_seat.include? e } %>

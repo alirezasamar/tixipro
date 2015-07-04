@@ -56,9 +56,10 @@ class LineItemsController < ApplicationController
   # POST /line_items.json
   def create
     @cart = current_cart
+    @seating = Ticket.find(params[:ticket_id]).event
     @ticket = Ticket.find(params[:ticket_id])
 
-    if @ticket.free == true
+    if @seating.free_seating?
       @line_item = @cart.add_ticket(@ticket.id)
     else
       @line_item = @cart.line_items.build(ticket: @ticket)
