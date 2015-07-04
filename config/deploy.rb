@@ -18,7 +18,7 @@ set :branch, 'master'
 set :user, 'deployer'
 set :forward_agent, true
 set :port, '22'
-set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
+# set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 set :term_mode, nil
 
 
@@ -74,7 +74,8 @@ task :deploy => :environment do
     invoke :'rails:assets_precompile'
 
     to :launch do
-      invoke :'unicorn:restart'
+        invoke : 'bundle exec thin start -e production'
+      # invoke :'unicorn:restart'
     end
   end
 end
