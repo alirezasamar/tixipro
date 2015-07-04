@@ -74,6 +74,7 @@ gem 'whenever', :require => false
 # The most lovely gem ever
 gem 'mina'
 
+gem 'sidekiq', group: :production
 # mina's sidekiq helper
 gem 'mina-sidekiq', :require => false
 
