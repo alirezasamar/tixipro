@@ -2,8 +2,8 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rbenv'
-require 'mina_sidekiq/tasks'
-require 'mina/unicorn'
+#require 'mina_sidekiq/tasks'
+#require 'mina/unicorn'
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -56,8 +56,8 @@ task :setup => :environment do
   queue %[echo "-----> Be sure to edit 'shared/config/secrets.yml'."]
 
   # sidekiq needs a place to store its pid file and log file
-  queue! %[mkdir -p "#{deploy_to}/shared/pids/"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/pids"]
+  #queue! %[mkdir -p "#{deploy_to}/shared/pids/"]
+  #queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/pids"]
 end
 
 desc "Deploys the current version to the server."
@@ -65,7 +65,7 @@ task :deploy => :environment do
   deploy do
 
     # stop accepting new workers
-    invoke :'sidekiq:quiet'
+    #invoke :'sidekiq:quiet'
 
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
