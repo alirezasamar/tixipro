@@ -74,7 +74,7 @@ task :deploy => :environment do
     invoke :'rails:assets_precompile'
 
     to :launch do
-        invoke : 'bundle exec thin start -e production'
+        invoke :'bundle exec thin start -e production'
       # invoke :'unicorn:restart'
     end
   end
