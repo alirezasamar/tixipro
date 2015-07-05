@@ -10,6 +10,11 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+
+    @line_items = current_cart.line_items
+
+    @ticket = @line_items.joins(:ticket).select("ticket_id").group("ticket_id").pluck(:ticket_id)
+
     if @cart.line_items.empty?
       redirect_to store_url, notice: "Your cart is empty"
       return

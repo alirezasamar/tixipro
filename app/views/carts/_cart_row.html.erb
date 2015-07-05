@@ -1,0 +1,96 @@
+<tr>
+    <td>
+        <div class="thumb_cart">
+          <%= link_to image_tag(ticket.event.cover_image.url(:small)), ticket.event.cover_image.url %>
+        </div>
+         <span class="item_cart"><%= ticket.event.name %><br>
+           (<%= ticket.ticket_type %>)</span>
+    </td>
+    <%= simple_form_for line_item do |f| %>
+      <td>
+        <% if line_item.ticket.event.free_seating? %>
+          Free seating
+          <!-- <%= f.label :quantity %>
+            <%= f.select :quantity, 1..line_item.remaining_seats_by_quantity, value: line_item.quantity %>
+          <td><%= f.submit "Update Qty", class: 'btn btn-primary' %> -->
+        <% else %>
+
+          <% @seats = line_item.total_seats.reject{ |e| line_item.all_taken_seat.include? e } %>
+          <% if line_item.seat_no == 0 || line_item.seat_no.nil? %>
+            <%= f.select :seat_no, @seats, class: 'form-control' %>
+            <%= f.submit "Select Seat", class: 'btn btn-primary btn-xs' %>
+          <% else %>
+            <% unless line_item.ticket.event.free_seating? %>
+              <%= line_item.seat_no %>
+            <% end %>
+          <% end %>
+
+        <% end %>
+      </td>
+      <td>
+
+          <%= f.hidden_field :ticket_id, value: ticket.id %>
+
+          <%= f.hidden_field :uid %>
+
+          <%= f.input :code, style: 'height: 30px; width: 100px;'%>
+
+          <%= f.submit "Validate", class: 'btn btn-primary btn-xs' %>
+
+      </td>
+      <td>
+        <% if !line_item.code.nil? %>
+          <% if line_item.code == line_item.promo_code %>
+            <%= line_item.discount_percentage %>%
+          <% else %>
+            0%
+          <% end %>
+        <% else %>
+          0%
+        <% end %>
+      </td>
+      <td>
+          <strong><%= number_to_currency line_item.total_price_after_discount %></strong>
+      </td>
+      <td>
+        <%= link_to "", line_item, { data: { confirm: "Are you sure you wish to delete the product '#{line_item.ticket.ticket_type}' from your cart?" }, method: :delete, class: "glyphicon glyphicon-trash" } %>
+
+          <!-- <a href="#"><i class=" icon-trash"></i></a>
+          <a href="#"><i class="icon-ccw-2"></i></a> -->
+      </td>
+    <% end %>
+</tr>
+      <!-- <h4><%= ticket.event.name %> (<%= ticket.ticket_type %>)</h4>
+      <% if line_item.ticket.event.free_seating? %>
+        Available : <%= line_item.remaining_seats_by_quantity %> / <%= line_item.ticket.quantity %>
+      <% else %>
+        Seat No: <%= line_item.seat_no %>
+      <% end %> -->
+
+<!--
+      <%= simple_form_for line_item do |f| %>
+        <h4 class="text-right">Unit Price: <span style="color: green"><%= number_to_currency line_item.total_price_after_discount %></span></h4>
+        <div class="row">
+          <div class="col-xs-4">
+            <% if line_item.ticket.event.free_seating? %> -->
+              <!-- <%= f.label :quantity %>
+                <%= f.select :quantity, 1..line_item.remaining_seats_by_quantity, value: line_item.quantity %>
+              <td><%= f.submit "Update Qty", class: 'btn btn-primary' %> -->
+            <!-- <% else %>
+              <% @seats = line_item.total_seats.reject{ |e| line_item.all_taken_seat.include? e } %>
+              <% if line_item.seat_no == 0 || line_item.seat_no.nil? %>
+                <%= f.select :seat_no, @seats %>
+                <%= f.submit "Select Seat No", class: 'btn btn-primary' %>
+              <% end %>
+            <% end %>
+            <%= f.hidden_field :ticket_id, value: ticket.id %>
+            <%= f.input :code %>
+            <%= f.submit "Validate Code", class: 'btn btn-primary' %>
+          </div>
+          <div class="col-xs-8 text-right">
+            <div class="btn-group">
+              <%= link_to "Delete", line_item, { data: { confirm: "Are you sure you wish to delete the product '#{line_item.ticket.ticket_type}' from your cart?" }, method: :delete, class: "btn btn-danger" } %>
+            </div>
+          </div>
+        </div>
+      <% end %> -->

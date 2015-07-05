@@ -1,32 +1,62 @@
-<h1> My Tickets </h1>
-<small>Only Paid Tickets will be shown here</small>
+<section id="hero_2">
+	<div class="intro_title animated fadeInDown">
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Event</th>
-      <th>Ticket</th>
-      <th>Quantity</th>
-      <th>Seat No / Free seating</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
+    </div>   <!-- End intro-title -->
+</section><!-- End Section hero_2 -->
 
-  <tbody>
-    <% @my_tickets.each do |mt| %>
-      <tr>
-        <td><%= mt.ticket.event.name %></td>
-        <td><%= mt.ticket.ticket_type %></td>
-        <td><%= mt.quantity %></td>
-        <td>
-          <% if mt.seat_no == 0 || mt.seat_no.nil? %>
-            Free Seating
-          <% else %>
-            <%= mt.seat_no %>
-          <% end %>
-        </td>
-        <td><%= link_to "Download Ticket", line_item_path(mt.id, format: :pdf), target: '_blank' %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div id="position">
+    	<div class="container">
+        	<ul>
+            <li><%= link_to "My Tickets", my_tickets_path %></li>
+          </ul>
+        </div>
+    </div><!-- End position -->
+
+    <div class="container margin_60">
+	<div class="row">
+		<div class="col-md-8">
+
+			<div class="form_title">
+				<h3><strong><i class="icon-tag-1"></i></strong>My Tickets</h3>
+				<p>
+					Only Paid Tickets will be shown here
+				</p>
+			</div>
+			<div class="step">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Ticket</th>
+              <th>Quantity</th>
+              <th>Seat No / Free seating</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @my_tickets.each do |mt| %>
+              <tr>
+                <td><%= mt.ticket.event.name %></td>
+                <td><%= mt.ticket.ticket_type %></td>
+                <td><%= mt.quantity %></td>
+                <td>
+                  <% if mt.seat_no == 0 || mt.seat_no.nil? %>
+                    Free Seating
+                  <% else %>
+                    <%= mt.seat_no %>
+                  <% end %>
+                </td>
+                <td><%= link_to "Download Ticket", line_item_path(mt.id, format: :pdf), target: '_blank' %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+
+			</div><!--End step -->
+		</div><!--End col-md-8 -->
+
+	</div><!--End row -->
+</div>

@@ -26,9 +26,12 @@ Rails.application.routes.draw do
 
   get "/my_tickets" => "line_items#my_tickets"
 
-  authenticated :user do
-    root :to => 'events#index', as: :authenticated_root
+  get "/my_invoices" => "payments#my_invoices"
+
+  scope '/admin' do
+    resources :events
   end
+
   root :to => 'store#index' , :as => 'store'
 
 end

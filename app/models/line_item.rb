@@ -3,7 +3,7 @@ class LineItem < ActiveRecord::Base
   belongs_to :cart
   belongs_to :payment
 
-  validates_presence_of :quantity, :seat_no
+  validates :quantity, :seat_no, presence: true
 
   def total_price_after_discount
     @discount = Discount.find_by ticket_id: ticket.id
@@ -31,6 +31,12 @@ class LineItem < ActiveRecord::Base
     ticket.quantity.to_i - total_taken_seat.to_i
   end
 
+  # for ticket * quantity
+  def ticket_quantity
+    line_items = LineItem.where(ticket_id: ticket_id)
+    total_taken_seat = line_items.collect { |li| li.valid? ? (li.quantity) : 0 }.sum
+  end
+
   def all_taken_seat
     line_items = LineItem.all
     line_items.pluck(:seat_no)
@@ -40,6 +46,14 @@ class LineItem < ActiveRecord::Base
   	if self.quantity.to_i > ticket.quantity.to_i
       errors.add(:quantity, "can't be greater than total quantity")
     end
+  end
+
+  def discount_percentage
+    Discount.find_by(ticket_id: ticket.id).discount_percentage
+  end
+
+  def promo_code
+    Discount.find_by(ticket_id: ticket.id).code
   end
 
   def receipt

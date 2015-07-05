@@ -11,11 +11,20 @@ class PaymentsController < ApplicationController
     @qr = RQRCode::QRCode.new( @payment.transaction_id, size: 4, level: :h).to_img.resize(200, 200).to_data_url
     @payment.update_attributes qr_code: @qr
 
-    session[:cart_id] = nil
+    # Cart.destroy(session[:cart_id])
+    # session[:cart_id] = nil
+  end
+
+  def my_invoices
+    @my_invoices = Payment.where(user_id: current_user)
   end
 
   # GET /registrations/new
   def new
+    @line_items = current_cart.line_items
+
+    @ticket = @line_items.joins(:ticket).select("ticket_id").group("ticket_id").pluck(:ticket_id)
+
     @cart = current_cart
     if @cart.line_items.empty?
       redirect_to store_url, :notice => "Your cart is empty"

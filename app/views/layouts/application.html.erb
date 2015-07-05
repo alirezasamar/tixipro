@@ -10,8 +10,8 @@
   <meta name="author" content="alireza.io">
   <title>Tixipro | DiverseCity KL 2015</title>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
 
   <!-- Favicons-->
   <%= favicon_link_tag ("favicon.ico"), rel: 'apple-touch-icon', type: 'image/x-icon' %>
@@ -70,26 +70,204 @@
     </div>
   </div> -->
 
-  <div class="container">
-    <% if flash[:notice] %>
-      <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <%= flash[:notice] %>
+      <div id="preloader">
+          <div class="sk-spinner sk-spinner-wave">
+              <div class="sk-rect1"></div>
+              <div class="sk-rect2"></div>
+              <div class="sk-rect3"></div>
+              <div class="sk-rect4"></div>
+              <div class="sk-rect5"></div>
+          </div>
       </div>
-    <% elsif flash[:error] %>
-      <div class="alert alert-warning alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <%= flash[:error] %>
-      </div>
-    <% elsif flash[:alert] %>
-      <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
+      <!-- End Preload -->
+
+      <div class="layer"></div>
+      <!-- Mobile menu overlay mask -->
+
+      <!-- Header================================================== -->
+      <header>
+          <div id="top_line">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-6 col-sm-6 col-xs-6"></div>
+
+                      <div class="col-md-6 col-sm-6 col-xs-6">
+                          <ul id="top_links">
+                              <li>
+                                  <div class="dropdown dropdown-access">
+
+                                    <% if user_signed_in? %>
+                                      <%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class: "dropdown-toggle" %>
+                                    <% else %>
+                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Sign in</a>
+                                      <div class="dropdown-menu">
+                                          <div class="row">
+                                              <div class="col-md-6 col-sm-6 col-xs-6">
+                                                  <a href="#" class="bt_facebook">
+                                                      <i class="icon-facebook"></i>Facebook </a>
+                                              </div>
+                                              <div class="col-md-6 col-sm-6 col-xs-6">
+                                                  <a href="#" class="bt_paypal">
+                                                      <i class="icon-paypal"></i>Paypal </a>
+                                              </div>
+                                          </div>
+                                          <div class="login-or">
+                                              <hr class="hr-or">
+                                              <span class="span-or">or</span>
+                                          </div>
+
+                                          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+                                            <div class="form-group">
+                                              <%= f.email_field :email, required: false, autofocus: true, placeholder: "Email", class: "form-control" %>
+                                            </div>
+                                            <div class="form-group">
+                                              <%= f.password_field :password, required: false, placeholder: "Password", class: "form-control" %>
+                                              <a><%= link_to "Forgot password?", new_user_password_path, style: "color: grey" %></a>
+                                            </div>
+
+                                              <%= f.submit "Sign in", class: "button_drop" %>
+                                              <%= link_to "Register", new_user_registration_path, class: "button_drop outline" %>
+                                          <% end %>
 
 
-  </div>
+                                      </div>
+                                      <% end %>
+                                  </div><!-- End Dropdown access -->
+                              </li>
+                          </ul>
+                      </div>
+                  </div><!-- End row -->
+              </div><!-- End container-->
+          </div><!-- End top line-->
+
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                      <div id="logo">
+                        <a href="/"><%= image_tag ("logo.png"), width: "160", height: "34", alt: 'DiverseCity', data: {retina: true}, class: "logo_normal" %></a>
+                        <a href="/"><%= image_tag ("logo_sticky.png"), width: "160", height: "34", alt: 'DiverseCity', data: {retina: true}, class: "logo_sticky" %></a>
+                      </div>
+                  </div>
+                  <nav class="col-md-9 col-sm-9 col-xs-9">
+                      <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
+                      <div class="main-menu">
+                          <div id="header_menu">
+                            <%= image_tag ("logo_sticky.png"), width: "160", height: "34", alt: 'DiverseCity', data: {retina: true} %></a>
+                          </div>
+                          <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
+                          <ul>
+                              <li class="submenu">
+                                  <%= link_to "Home", store_url, class: "show-submenu" %>
+                              </li>
+                              <li class="submenu">
+                                  <a href="javascript:void(0);" class="show-submenu">Genres <i class="icon-down-open-mini"></i></a>
+                                  <ul>
+                                      <li><a href="#">Dance</a></li>
+                                      <li><a href="#">Music</a></li>
+                                      <li><a href="#">Comedy</a></li>
+                                      <li><a href="#">Traditional</a></li>
+                                      <li><a href="#">Literature</a></li>
+                                  </ul>
+                              </li>
+                               <li class="submenu">
+                                  <a href="javascript:void(0);" class="show-submenu">Venues <i class="icon-down-open-mini"></i></a>
+                                  <ul>
+                                    <li><a href="#">Black Box</a></li>
+                                    <li><a href="#">White Box</a></li>
+                                    <li><a href="#">KLCC</a></li>
+                                    <li><a href="#">KLIA</a></li>
+                                  </ul>
+                              </li>
+
+                          </ul>
+                      </div><!-- End main-menu -->
+                      <ul id="top_tools">
+                          <li>
+                              <div class="dropdown dropdown-search">
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-search"></i></a>
+                                  <div class="dropdown-menu">
+                                      <form>
+                                          <div class="input-group">
+                                              <input type="text" class="form-control" placeholder="Search...">
+                                              <span class="input-group-btn">
+                                              <button class="btn btn-default" type="button" style="margin-left:0;">
+                                              <i class="icon-search"></i>
+                                              </button>
+                                              </span>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </li>
+                          <li>
+                              <div class="dropdown dropdown-cart">
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class=" icon-basket-1"></i>Cart (0) </a>
+                                  <ul class="dropdown-menu" id="cart_items">
+                                      <li>
+                                        <div class="image"><%= image_tag ("thumb_cart_1.jpg"), alt: '' %></a></div>
+                                          <strong>
+  										<a href="#">Pak Pandir Yo!</a>1x RM36.00 </strong>
+                                          <a href="#" class="action"><i class="icon-trash"></i></a>
+                                      </li>
+                                      <li>
+                                          <div class="image"><%= image_tag ("thumb_cart_2.jpg"), alt: '' %></div>
+                                          <strong>
+  										<a href="#">The Tree</a>2x RM36.00 </strong>
+                                          <a href="#" class="action"><i class="icon-trash"></i></a>
+                                      </li>
+                                      <li>
+                                          <div class="image"><%= image_tag ("thumb_cart_3.jpg"), alt: '' %></div>
+                                          <strong>
+  										<a href="#">Tepak Tari</a>1x RM36.00 </strong>
+                                          <a href="#" class="action"><i class="icon-trash"></i></a>
+                                      </li>
+                                      <li>
+                                          <div>Total: <span>RM120.00</span></div>
+                                          <a href="cart.html" class="button_drop">Go to cart</a>
+                                          <a href="payment.html" class="button_drop outline">Check out</a>
+                                      </li>
+                                  </ul>
+                              </div><!-- End dropdown-cart-->
+                          </li>
+                      </ul>
+                  </nav>
+              </div>
+          </div><!-- container -->
+
+          <div class="container" id="success-alert">
+            <% if flash[:notice] %>
+              <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= flash[:notice] %>
+              </div>
+            <% elsif flash[:error] %>
+              <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= flash[:error] %>
+              </div>
+            <% elsif flash[:alert] %>
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= flash[:alert] %>
+              </div>
+            <% end %>
+
+            <script type="text/javascript">
+
+              $("#success-alert").fadeTo(3000, 500).slideUp(500, function(){
+                  $("#success-alert").alert('close');
+              });
+
+            </script>
+          </div>
+
+      </header><!-- End Header -->
+
+
+
+
+
   <%= yield %>
 
 
@@ -139,7 +317,7 @@
                         <li><a href="#"><i class="icon-instagram"></i></a></li>
                         <li><a href="#"><i class="icon-youtube-play"></i></a></li>
                     </ul>
-                    <p>© 2015, All ritgh reserved for Tixipro.</p>
+                    <p>© 2015, All right reserved for Tixipro.</p>
                 </div>
             </div>
         </div><!-- End row -->

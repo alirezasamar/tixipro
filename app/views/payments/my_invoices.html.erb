@@ -1,0 +1,48 @@
+<section id="hero_2">
+	
+</section>
+
+<div class="container margin_60">
+	<div class="row">
+		<div class="col-md-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Transaction ID</th>
+            <th>Quantity</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @my_invoices.each do |mi| %>
+            <tr>
+              <td><%= mi.transaction_id %></td>
+              <td><%= mi.transaction_amount %></td>
+              <td>
+              </td>
+              <td><%= link_to "View Invoice", line_item_path(mi.id, format: :pdf), target: '_blank' %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+		</div><!--End col-md-8 -->
+
+		<aside class="col-md-4">
+		<div class="box_style_1">
+			<h3 class="inner">Thank you!</h3>
+			<p>
+				Nihil inimicus ex nam, in ipsum dignissim duo. Tale principes interpretaris vim ei, has posidonium definitiones ut. Duis harum fuisset ut his, duo an dolor epicuri appareat.
+			</p>
+		</div>
+		<div class="box_style_4">
+			<i class="icon_set_1_icon-89"></i>
+			<h4>Have <span>questions?</span></h4>
+			<a href="tel://004542344599" class="phone">+45 423 445 99</a>
+			<small>Monday to Friday 9.00am - 7.30pm</small>
+		</div>
+		</aside>
+
+	</div><!--End row -->
+</div><!--End container -->

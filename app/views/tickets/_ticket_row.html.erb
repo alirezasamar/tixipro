@@ -1,26 +1,41 @@
-<div class="well">
 
   <div class="row">
     <div class="col-xs-5">
       <h4><%= ticket.ticket_type %></h4>
-      Seat No: <small>From <%= ticket.min_seat_no %> to <%= ticket.max_seat_no %></small>
+      <%= number_to_currency(ticket.price) %><br></br>
+      <% if ticket.event.free_seating? %>
+        Available : <%= ticket.remaining_seats_by_quantity %> / <%= ticket.quantity %>
+      <% else %>
+        Seat No: <small><%= ticket.min_seat_no %> - <%= ticket.max_seat_no %></small>
+      <% end %>
     </div>
     <div class="col-xs-7">
 
-      <%= simple_form_for item do |f| %>
+      <%= simple_form_for line_item do |f| %>
         <div class="input-group">
-          <% seats = ticket.min_seat_no.upto(ticket.max_seat_no).to_a %>
-          <% final_seats = seats %>
-          <%= f.select(:seat_no, final_seats.collect {|d| [d.to_s,d.to_s]}, {:prompt => '-- Choose a Seat No --'} ) %>
+          <!-- <% seats = ticket.min_seat_no.upto(ticket.max_seat_no).to_a %>
+          <% final_seats = seats %> -->
 
-          <%= f.hidden_field :quantity, value: 1, class: "form-control", min: 1 %>
-          <div class="input-group-btn">
-            <%= f.hidden_field :ticket_id, value: ticket.id %>
-            <%= f.submit "Add to Cart", class: "btn btn-primary" %>
-          </div>
+          <!-- <%= f.select(:seat_no, final_seats.collect {|d| [d.to_s,d.to_s]}, {:prompt => '-- Choose a Seat No --'} ) %> -->
+
+
+              <%= f.label :select_quantity %>
+              <%= f.select :quantity, 1..ticket.remaining_seats_by_quantity.to_i, class: "qty2 form-control" %>
+
+              <!-- <div class="numbers-row">
+                <input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
+              </div> -->
+              <div class="input-group-btn">
+
+                <%= f.submit "+ Cart", class: "btn btn-primary" %>
+              </div>
+
+
+          <%= f.hidden_field :ticket_id, value: ticket.id %>
+          <!-- <%= f.hidden_field :quantity, value: 1, class: "form-control", min: 1 %> -->
+
         </div>
       <% end %>
     </div>
 
   </div>
-</div>

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :events, :dependent => :destroy
+  has_many :events
   has_many :tickets
   has_many :payments
   belongs_to :role

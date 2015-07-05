@@ -56,13 +56,22 @@ class LineItemsController < ApplicationController
   # POST /line_items.json
   def create
     @cart = current_cart
-    @seating = Ticket.find(params[:ticket_id]).event
-    @ticket = Ticket.find(params[:ticket_id])
+    @seating = Ticket.find(params[:line_item][:ticket_id]).event
+    @ticket = Ticket.find(params[:line_item][:ticket_id])
 
-    if @seating.free_seating?
-      @line_item = @cart.add_ticket(@ticket.id)
-    else
-      @line_item = @cart.line_items.build(ticket: @ticket)
+    # @run = LineItem.new(params[:run])
+    # @tape_ids = @run.add_ticket(params[:run][:tapes])
+
+    # if !@seating.free_seating?
+      # @line_item = @cart.add_ticket(@ticket.id)
+    # else
+
+    @quantity = (params[:line_item][:quantity]).to_i
+    @quantity.times do
+      @uid = SecureRandom.hex(10)
+      @line_item = @cart.line_items.build(ticket: @ticket, uid: @uid)
+    # end
+      @line_item.save
     end
 
     respond_to do |format|
@@ -108,6 +117,6 @@ class LineItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_item_params
-      params.require(:line_item).permit(:ticket_id, :cart_id, :quantity, :code, :seat_no)
+      params.require(:line_item).permit(:ticket_id, :cart_id, :quantity, :code, :seat_no, :uid)
     end
 end
