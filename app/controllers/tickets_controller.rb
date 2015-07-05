@@ -7,6 +7,7 @@ class TicketsController < ApplicationController
   # GET /tickets.json
   def index
     @tickets = Ticket.where(event_id: @event)
+    @item = current_cart.line_items.new
   end
 
   # GET /tickets/1

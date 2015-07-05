@@ -1,33 +1,344 @@
-<h1>Listing Events</h1>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8"> <![endif]-->
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<!--<![endif]-->
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Cover Image</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Genre</th>
-      <th>Start</th>
-      <th>End</th>
-      <th>Add ticket</td>
-      <th>Add discount</td>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<!--[if lte IE 8]>
+    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
+<![endif]-->
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= link_to image_tag(event.cover_image.url(:small)), event.cover_image.url %></td>
-        <td><%= event.name %></td>
-        <td><%= event.description.html_safe %></td>
-        <td><%= event.genre %></td>
-        <td><%= event.start %></td>
-        <td><%= event.end %></td>
-        <td><%= link_to 'Buy tickets', event_tickets_path(event) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div id="preloader">
+        <div class="sk-spinner sk-spinner-wave">
+            <div class="sk-rect1"></div>
+            <div class="sk-rect2"></div>
+            <div class="sk-rect3"></div>
+            <div class="sk-rect4"></div>
+            <div class="sk-rect5"></div>
+        </div>
+    </div>
+    <!-- End Preload -->
 
-<br>
+    <div class="layer"></div>
+    <!-- Mobile menu overlay mask -->
+
+    <!-- Header================================================== -->
+    <header>
+        <div id="top_line">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6"></div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <ul id="top_links">
+                            <li>
+                                <div class="dropdown dropdown-access">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Sign in</a>
+                                    <div class="dropdown-menu">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <a href="#" class="bt_facebook">
+                                                    <i class="icon-facebook"></i>Facebook </a>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <a href="#" class="bt_paypal">
+                                                    <i class="icon-paypal"></i>Paypal </a>
+                                            </div>
+                                        </div>
+                                        <div class="login-or">
+                                            <hr class="hr-or">
+                                            <span class="span-or">or</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inputUsernameEmail" placeholder="Email">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                        </div>
+                                        <a id="forgot_pw" href="#">Forgot password?</a>
+                                        <input type="submit" name="" value="Sign in" id="Sign_in" class="button_drop">
+                                        <input type="submit" name="" value="Sign up" id="Sign_up" class="button_drop outline">
+                                    </div>
+                                </div><!-- End Dropdown access -->
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- End row -->
+            </div><!-- End container-->
+        </div><!-- End top line-->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <div id="logo">
+                      <a href="index.html"><%= image_tag ("logo.png"), width: "160", height: "34", alt: 'DiverseCity', data: {retina: true}, class: "logo_normal" %></a>
+                      <a href="index.html"><%= image_tag ("logo_sticky.png"), width: "160", height: "34", alt: 'DiverseCity', data: {retina: true}, class: "logo_sticky" %></a>
+                    </div>
+                </div>
+                <nav class="col-md-9 col-sm-9 col-xs-9">
+                    <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
+                    <div class="main-menu">
+                        <div id="header_menu">
+                          <%= image_tag ("logo_sticky.png"), width: "160", height: "34", alt: 'DiverseCity', data: {retina: true} %></a>
+                        </div>
+                        <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
+                        <ul>
+                            <li class="submenu">
+                                <a href="javascript:void(0);" class="show-submenu">Home </a>
+                            </li>
+                            <li class="submenu">
+                                <a href="javascript:void(0);" class="show-submenu">Genres <i class="icon-down-open-mini"></i></a>
+                                <ul>
+                                    <li><a href="#">Dance</a></li>
+                                    <li><a href="#">Music</a></li>
+                                    <li><a href="#">Comedy</a></li>
+                                    <li><a href="#">Traditional</a></li>
+                                    <li><a href="#">Literature</a></li>
+                                </ul>
+                            </li>
+                             <li class="submenu">
+                                <a href="javascript:void(0);" class="show-submenu">Venues <i class="icon-down-open-mini"></i></a>
+                                <ul>
+                                  <li><a href="#">Black Box</a></li>
+                                  <li><a href="#">White Box</a></li>
+                                  <li><a href="#">KLCC</a></li>
+                                  <li><a href="#">KLIA</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div><!-- End main-menu -->
+                    <ul id="top_tools">
+                        <li>
+                            <div class="dropdown dropdown-search">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-search"></i></a>
+                                <div class="dropdown-menu">
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search...">
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" style="margin-left:0;">
+                                            <i class="icon-search"></i>
+                                            </button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="dropdown dropdown-cart">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class=" icon-basket-1"></i>Cart (0) </a>
+                                <ul class="dropdown-menu" id="cart_items">
+                                    <li>
+                                      <div class="image"><%= image_tag ("thumb_cart_1.jpg"), alt: '' %></a></div>
+                                        <strong>
+										<a href="#">Pak Pandir Yo!</a>1x RM36.00 </strong>
+                                        <a href="#" class="action"><i class="icon-trash"></i></a>
+                                    </li>
+                                    <li>
+                                        <div class="image"><%= image_tag ("thumb_cart_2.jpg"), alt: '' %></div>
+                                        <strong>
+										<a href="#">The Tree</a>2x RM36.00 </strong>
+                                        <a href="#" class="action"><i class="icon-trash"></i></a>
+                                    </li>
+                                    <li>
+                                        <div class="image"><%= image_tag ("thumb_cart_3.jpg"), alt: '' %></div>
+                                        <strong>
+										<a href="#">Tepak Tari</a>1x RM36.00 </strong>
+                                        <a href="#" class="action"><i class="icon-trash"></i></a>
+                                    </li>
+                                    <li>
+                                        <div>Total: <span>RM120.00</span></div>
+                                        <a href="cart.html" class="button_drop">Go to cart</a>
+                                        <a href="payment.html" class="button_drop outline">Check out</a>
+                                    </li>
+                                </ul>
+                            </div><!-- End dropdown-cart-->
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div><!-- container -->
+    </header><!-- End Header -->
+
+<section id="hero">
+ 	<div class="intro_title">
+    	<h1 class="animated fadeInDown">DiverseCity KL 2015</h1>
+        <p class="animated fadeInDown">Kuala Lumpur International Art Festival</p>
+       <a href="#" class="animated fadeInUp button_intro">Add to Cart</a> <a href="#" class="animated fadeInUp button_intro outline">View Details</a>
+	</div>
+
+    	 <div id="search_bar_container">
+                	<div class="container">
+                            <div class="search_bar">
+                            <span class="nav-facade-active" id="nav-search-in">
+                            <span id="nav-search-in-content" style="">All Events</span>
+                            <span class="nav-down-arrow nav-sprite"></span>
+                            <select title="Search in" class="searchSelect" id="searchDropdownBox" name="tours_category">
+                                <option value="All Events"  title="All Events">All Events</option>
+                                <option value="Genres" title="Genres">Genres</option>
+                                <option value="People" title="People">People</option>
+                                <option value="Location" title="Location">Location</option>
+                                <option value="Date" title="Date">Date</option>
+                            </select>
+                            </span>
+                            <div class="nav-searchfield-outer">
+                                <input type="text" autocomplete="off" name="field-keywords" placeholder="Search here ..." id="twotabsearchtextbox">
+                            </div>
+                            <div class="nav-submit-button">
+                                <input type="submit" title="Cerca" class="nav-submit-input" value="Search">
+                            </div>
+                        </div><!-- End search bar-->
+                    </div>
+                </div><!-- /search_bar-->
+</section><!-- End hero -->
+
+
+
+<section class="container margin_60">
+
+        <div class="main_title">
+            <h2><span>Upcoming</span> Events</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+
+        <div  class="container margin_50">
+
+            	<div class="row">
+                	<aside class="col-lg-3 col-md-3">
+
+        		<div class="box_style_cat">
+        			<ul id="cat_nav">
+        				<li><a href="#" id="active"><i class="icon_set_1_icon-51"></i>All genres <span>(141)</span></a></li>
+        				<li><a href="#"><i class="icon_set_1_icon-3"></i>Dance <span>(20)</span></a></li>
+        				<li><a href="#"><i class="icon_set_1_icon-4"></i>Litreture <span>(16)</span></a></li>
+        				<li><a href="#"><i class="icon_set_1_icon-44"></i>Traditional <span>(12)</span></a></li>
+        				<li><a href="#"><i class="icon_set_1_icon-37"></i>Music <span>(11)</span></a></li>
+        				<li><a href="#"><i class="icon_set_1_icon-14"></i>Comedy <span>(20)</span></a></li>
+        			</ul>
+        		</div>
+
+        		</aside><!--End aside -->
+                    <div class="col-lg-9 col-md-9">
+
+                    <div id="tools">
+
+                   <div class="row">
+                   	<div class="col-md-3 col-sm-3 col-xs-6">
+                    	<div class="styled-select-filters">
+        								<select name="sort_price" id="sort_price">
+        									<option value="" selected>Sort by price</option>
+        									<option value="lower">Lowest price</option>
+        									<option value="higher">Highest price</option>
+        								</select>
+        				</div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-6">
+                        <div class="styled-select-filters">
+        								<select  name="sort_rating" id="sort_rating">
+        									<option value="" selected>Sort by date</option>
+        									<option value="lower">Lowest</option>
+        									<option value="higher">Highest</option>
+        								</select>
+        				</div>
+                        </div>
+
+                    <div class="col-md-6 col-sm-6 hidden-xs text-right">
+                    </div>
+
+                	</div>
+                    </div><!--/tools -->
+
+                    <% @events.each do |event| %>
+
+            			<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
+                           <div class="row">
+                        	<div class="col-lg-4 col-md-4 col-sm-4">
+                            	<div class="img_list"><a href="event.html"><%= link_to image_tag(event.cover_image.url(:large)), event.cover_image.url  %>
+                                <div class="short_info"><i class="icon_set_1_icon-4"></i><%= event.genre %></div></a>
+                                </div>
+                            </div>
+                             <div class="clearfix visible-xs-block"></div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            		<div class="tour_list_desc">
+                                    <div class="rating"></div>
+                            		<h3><strong><%= event.name %></strong></h3>
+                                    <p><%= event.description.html_safe %></p>
+                                    <ul class="add_info">
+                                    <li>
+                                    <div class="tooltip_styled tooltip-effect-4">
+                                    	<span class="tooltip-item"><i class="icon_set_1_icon-83"></i></span>
+                                        	<div class="tooltip-content"><h4>Schedule</h4>
+                                            <strong><%= event.start.strftime("%B %d") %><strong> <%= event.start.strftime("%H.%I %p") %> -
+                                            <strong><%= event.end.strftime("%B %d") %><strong> <%= event.end.strftime("%H.%I %p") %>
+                                        </div>
+                                      </div>
+                                   </li>
+                                   <li>
+                                    <div class="tooltip_styled tooltip-effect-4">
+                                    	<span class="tooltip-item"><i class="icon_set_1_icon-41"></i></span>
+                                        	<div class="tooltip-content"><h4>Venue</h4>
+                                            	<%= event.venue %><br>
+                                        </div>
+                                      </div>
+                                   </li>
+                                    </ul>
+                                    </div>
+                            </div>
+        					<div class="col-lg-2 col-md-2 col-sm-2">
+                            	<div class="price_list"><div><sup>RM</sup><%= (event.tickets.pluck(:price).min).to_i %>*<small >*Per person</small>
+                                <p><%= link_to 'Details', event_path(event), class: "btn_1" %></p>
+                              <p><%= link_to '+ Cart', event_tickets_path(event), class: "btn_1 red" %></p>
+                                </div>
+
+                                </div>
+                            </div>
+                            </div>
+        				</div><!--End strip -->
+                <% end %>
+
+                        <hr>
+
+                        <div class="text-center">
+                            <ul class="pagination">
+                                <li><a href="#">Prev</a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
+                        </div><!-- end pagination-->
+
+                </div><!-- End col lg-9 -->
+            </div><!-- End row -->
+        </div><!-- End container -->
+                </section><!-- End section -->
+
+    <section class="parallax-window" data-parallax="scroll" data-image-src="assets/home_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
+      <!-- <%= image_tag "home_bg_1.png", data: { parallax: "scroll", image_src: "home_bg_1.png", natural_width: "1400", natural_height: "470" } %> -->
+
+        <div class="parallax-content-1 magnific">
+            <div>
+                <h3>DiverseCity KL 2015</h3>
+                <p>Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset, doctus volumus explicari qui ex.</p><a href="https://www.youtube.com/watch?v=Zz5cu72Gv5Y" class="video"><i class="icon-play-circled2-1"></i></a>
+            </div>
+        </div>
+    </section><!-- End section -->
+
+
+<div id="toTop"></div><!-- Back to top button -->
+
+<script>
+//Search bar
+RM(function () {
+"use strict";
+RM("#searchDropdownBox").change(function(){
+    var Search_Str = RM(this).val();
+    //replace search str in span value
+    RM("#nav-search-in-content").text(Search_Str);
+  });
+});
+</script>

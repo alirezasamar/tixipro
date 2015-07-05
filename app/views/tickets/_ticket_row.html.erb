@@ -7,8 +7,7 @@
     </div>
     <div class="col-xs-7">
 
-      <%= form_for order_item, remote: true do |f| %>
-      <h4 class="text-right">Unit Price: <span style="color: green"><%= number_to_currency ticket.price %></span></h4>
+      <%= simple_form_for item do |f| %>
         <div class="input-group">
           <% seats = ticket.min_seat_no.upto(ticket.max_seat_no).to_a %>
           <% final_seats = seats %>

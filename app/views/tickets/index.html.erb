@@ -1,40 +1,500 @@
+<section class="parallax-window" data-parallax="scroll" data-image-src="../assets/single_tour_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
+  <div class="parallax-content-2">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-8 col-sm-8">
+                  <h1>THE TREE BY DUA SPACE DANCE THEATRE</h1>
+                  <span>September 2nd at Publika, Black Box</span>
+              </div>
+              <div class="col-md-4 col-sm-4">
+                  <div id="price_single_main">
+                      per person <span><sup>RM</sup>52</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </section><!-- End section -->
 
-<h1>Listing Tickets</h1>
-<% if can? :create, @event %>
-  <%= link_to 'Add ticket', new_event_ticket_path(@event), class: 'btn btn-default' %>
-<% end %>
+  <div id="position">
+    <div class="container">
+      <ul>
+      <li><%= link_to "Home", store_url %></li>
+      <li><%= link_to "Events", store_url %></li>
+      <li><%= @event.name %></li>
+      </ul>
+    </div>
+  </div><!-- End Position -->
 
-<% if @tickets.empty? %>
-  <h1>Sorry. The tickets not released yet.</h1>
 
-<% else %>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Ticket type</th>
-      <th>Price</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
+<div class="container margin_60">
+<div class="row">
+  <div class="col-md-8" id="single_tour_desc">
 
-  <tbody>
-    <% @tickets.each do |ticket| %>
-    <% if ticket.remaining_seats_by_quantity > 0 %>
+      <!-- <div id="Img_carousel" class="slider-pro">
+          <div class="sp-slides">
+
+              <div class="sp-slide">
+                  <img alt="" class="sp-image" src="../assets/blank.gif"
+                  data-src="../assets/slider_single_tour/1_medium.jpg"
+                  data-small="assets/slider_single_tour/1_small.jpg"
+                  data-medium="assets/slider_single_tour/1_medium.jpg"
+                  data-large="assets/slider_single_tour/1_large.jpg"
+                  data-retina="assets/slider_single_tour/1_large.jpg">
+              </div>
+              <div class="sp-slide">
+                  <img alt="" class="sp-image" src="assets/blank.gif"
+                  data-src="assets/slider_single_tour/2_medium.jpg"
+                  data-small="assets/slider_single_tour/2_small.jpg"
+                  data-medium="assets/slider_single_tour/2_medium.jpg"
+                  data-large="assets/slider_single_tour/2_large.jpg"
+                  data-retina="assets/slider_single_tour/2_large.jpg">
+                  <h3 class="sp-layer sp-black sp-padding" data-horizontal="40" data-vertical="40" data-show-transition="left">
+                  Lorem ipsum dolor sit amet </h3>
+                  <p class="sp-layer sp-white sp-padding" data-horizontal="40" data-vertical="100" data-show-transition="left" data-show-delay="200">
+                       consectetur adipisicing elit
+                  </p>
+                  <p class="sp-layer sp-black sp-padding" data-horizontal="40" data-vertical="160" data-width="350" data-show-transition="left" data-show-delay="400">
+                       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+              </div>
+
+              <div class="sp-slide">
+                  <img alt="" class="sp-image" src="assets/blank.gif"
+                  data-src="assets/slider_single_tour/3_medium.jpg"
+                  data-small="assets/slider_single_tour/3_small.jpg"
+                  data-medium="assets/slider_single_tour/3_medium.jpg"
+                  data-large="assets/slider_single_tour/3_large.jpg"
+                  data-retina="assets/slider_single_tour/3_large.jpg">
+                  <p class="sp-layer sp-white sp-padding" data-position="centerCenter" data-vertical="-50" data-show-transition="right" data-show-delay="500">
+                       Lorem ipsum dolor sit amet
+                  </p>
+                  <p class="sp-layer sp-black sp-padding" data-position="centerCenter" data-vertical="50" data-show-transition="left" data-show-delay="700">
+                       consectetur adipisicing elit
+                  </p>
+              </div>
+
+              <div class="sp-slide">
+                  <img alt="" class="sp-image" src="assets/blank.gif"
+                  data-src="assets/slider_single_tour/4_medium.jpg"
+                  data-small="assets/slider_single_tour/4_small.jpg"
+                  data-medium="assets/slider_single_tour/4_medium.jpg"
+                  data-large="assets/slider_single_tour/4_large.jpg"
+                  data-retina="assets/slider_single_tour/4_large.jpg">
+                  <p class="sp-layer sp-black sp-padding" data-position="bottomLeft" data-vertical="0" data-width="100%" data-show-transition="up">
+                       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>assets/
+              </div>
+
+              <div class="sp-slide">
+                  <img alt="" class="sp-image" src="assets/blank.gif"
+                  data-src="assets/slider_single_tour/5_medium.jpg"
+                  data-small="assets/slider_single_tour/5_small.jpg"
+                  data-medium="assets/slider_single_tour/5_medium.jpg"
+                  data-large="assets/slider_single_tour/5_large.jpg"
+                  data-retina="assets/slider_single_tour/5_large.jpg">
+                  <p class="sp-layer sp-white sp-padding" data-vertical="5%" data-horizontal="5%" data-width="90%" data-show-transition="down" data-show-delay="400">
+                       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+              </div>
+
+              <div class="sp-slide">
+                  <img alt="" class="sp-image" src="../src/css/images/blank.gif"
+                  data-src="assets/slider_single_tour/6_medium.jpg"
+                  data-small="assets/slider_single_tour/6_small.jpg"
+                  data-medium="assets/slider_single_tour/6_medium.jpg"
+                  data-large="assets/slider_single_tour/6_large.jpg"
+                  data-retina="assets/slider_single_tour/6_large.jpg">
+                  <p class="sp-layer sp-white sp-padding" data-horizontal="10" data-vertical="10" data-width="300">
+                       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+              </div>
+
+              <div class="sp-slide">
+                  <img alt="" class="sp-image" src="assets/blank.gif"
+                  data-src="assets/slider_single_tour/7_medium.jpg"
+                  data-small="assets/slider_single_tour/7_small.jpg"
+                  data-medium="assets/slider_single_tour/7_medium.jpg"
+                  data-large="assets/slider_single_tour/7_large.jpg"
+                  data-retina="assets/slider_single_tour/7_large.jpg">
+                  <p class="sp-layer sp-black sp-padding" data-position="bottomLeft" data-horizontal="5%" data-vertical="5%" data-width="90%" data-show-transition="up" data-show-delay="400">
+                       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+              </div>
+
+              <div class="sp-slide">
+                  <img alt="" class="sp-image" src="assets/blank.gif"
+                  data-src="http://bqworks.com/slider-pro/images/image8_medium.jpg"
+                  data-small="http://bqworks.com/slider-pro/images/image8_small.jpg"
+                  data-medium="http://bqworks.com/slider-pro/images/image8_medium.jpg"
+                  data-large="http://bqworks.com/slider-pro/images/image8_large.jpg"
+                  data-retina="http://bqworks.com/slider-pro/images/image8_large.jpg"/>
+              </div>
+              <div class="sp-slide">
+                  <img alt="" class="sp-image" src="../src/css/images/blank.gif"
+                  data-src="assets/slider_single_tour/8_medium.jpg"
+                  data-small="assets/slider_single_tour/8_small.jpg"
+                  data-medium="assets/slider_single_tour/8_medium.jpg"
+                  data-large="assets/slider_single_tour/8_large.jpg"
+                  data-retina="assets/slider_single_tour/8_large.jpg">
+                  <p class="sp-layer sp-black sp-padding" data-horizontal="50" data-vertical="50" data-show-transition="down" data-show-delay="500">
+                       Lorem ipsum dolor sit amet
+                  </p>
+                  <p class="sp-layer sp-white sp-padding" data-horizontal="50" data-vertical="100" data-show-transition="up" data-show-delay="500">
+                       consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  </p>
+              </div>
+
+              <div class="sp-slide">
+                  <img alt="" class="sp-image" src="assets/blank.gif"
+                  data-src="assets/slider_single_tour/9_medium.jpg"
+                  data-small="assets/slider_single_tour/9_small.jpg"
+                  data-medium="assets/slider_single_tour/9_medium.jpg"
+                  data-large="assets/slider_single_tour/9_large.jpg"
+                  data-retina="assets/slider_single_tour/9_large.jpg">
+              </div>
+          </div>
+          <div class="sp-thumbnails">
+              <img alt="" class="sp-thumbnail" src="assets/slider_single_tour/1_medium.jpg">
+              <img alt="" class="sp-thumbnail" src="assets/slider_single_tour/2_medium.jpg">
+              <img alt="" class="sp-thumbnail" src="assets/slider_single_tour/3_medium.jpg">
+              <img alt="" class="sp-thumbnail" src="assets/slider_single_tour/4_medium.jpg">
+              <img alt="" class="sp-thumbnail" src="assets/slider_single_tour/5_medium.jpg">
+              <img alt="" class="sp-thumbnail" src="assets/slider_single_tour/6_medium.jpg">
+              <img alt="" class="sp-thumbnail" src="assets/slider_single_tour/7_medium.jpg">
+              <img alt="" class="sp-thumbnail" src="assets/slider_single_tour/8_medium.jpg">
+              <img alt="" class="sp-thumbnail" src="assets/slider_single_tour/9_medium.jpg">
+          </div>
+      </div> -->
+
+      <hr>
+
+      <div class="row">
+          <div class="col-md-3">
+              <h3>Description</h3>
+          </div>
+          <div class="col-md-9">
+              <h4><%= @event.name %></h4>
+              <p>
+                <%= @event.description %>
+              </p>
+              <h4>What's include</h4>
+              <p>
+                  Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi.
+              </p>
+              <div class="row">
+                  <div class="col-md-6 col-sm-6">
+                      <ul class="list_ok">
+                          <li>Lorem ipsum dolor sit amet</li>
+                          <li>No scripta electram necessitatibus sit</li>
+                          <li>Quidam percipitur instructior an eum</li>
+                          <li>Ut est saepe munere ceteros</li>
+                          <li>No scripta electram necessitatibus sit</li>
+                          <li>Quidam percipitur instructior an eum</li>
+                      </ul>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                      <ul class="list_ok">
+                          <li>Lorem ipsum dolor sit amet</li>
+                          <li>No scripta electram necessitatibus sit</li>
+                          <li>Quidam percipitur instructior an eum</li>
+                          <li>No scripta electram necessitatibus sit</li>
+                      </ul>
+                  </div>
+              </div>
+              <!-- End row  -->
+          </div>
+      </div>
+      <hr>
+      <div class="row">
+          <div class="col-md-3">
+              <h3>Schedule</h3>
+          </div>
+          <div class="col-md-9">
+
+              <div class=" table-responsive">
+                  <table class="table table-striped">
+                  <thead>
+                  <tr>
+                      <th colspan="2">
+                           1st March to 31st October
+                      </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                      <td>
+                          Monday
+                      </td>
+                      <td>
+                          10.00 - 17.30
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          Tuesday
+                      </td>
+                      <td>
+                          09.00 - 17.30
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          Wednesday
+                      </td>
+                      <td>
+                          09.00 - 17.30
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          Thursday
+                      </td>
+                      <td>
+                          <span class="label label-danger">Closed</span>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          Friday
+                      </td>
+                      <td>
+                          09.00 - 17.30
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          Saturday
+                      </td>
+                      <td>
+                          09.00 - 17.30
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          Sunday
+                      </td>
+                      <td>
+                          10.00 - 17.30
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <strong><em>Last Admission</em></strong>
+                      </td>
+                      <td>
+                          <strong>17.00</strong>
+                      </td>
+                  </tr>
+                  </tbody>
+                  </table>
+              </div>
+
+              <div class=" table-responsive">
+                  <table class="table table-striped">
+                  <thead>
+                  <tr>
+                      <th colspan="2">
+                           1st November to 28th February
+                      </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                      <td>
+                          Monday
+                      </td>
+                      <td>
+                          10.00 - 17.30
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          Tuesday
+                      </td>
+                      <td>
+                          09.00 - 17.30
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          Wednesday
+                      </td>
+                      <td>
+                          09.00 - 17.30
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          Thursday
+                      </td>
+                      <td>
+                          <span class="label label-danger">Closed</span>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          Friday
+                      </td>
+                      <td>
+                          09.00 - 17.30
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          Saturday
+                      </td>
+                      <td>
+                          09.00 - 17.30
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          Sunday
+                      </td>
+                      <td>
+                          10.00 - 17.30
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <strong><em>Last Admission</em></strong>
+                      </td>
+                      <td>
+                          <strong>17.00</strong>
+                      </td>
+                  </tr>
+                  </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <hr>
+      <div class="row">
+</div>
+  </div><!--End  single_tour_desc-->
+
+  <aside class="col-md-4">
+
+  <div class="box_style_1 expose">
+      <h3 class="inner">- Tickets -</h3>
+
+
+      <div class="row">
+        <% @tickets.each do |ticket| %>
+          <div class="col-md-6 col-sm-6">
+              <div class="form-group">
+                  <%= ticket.ticket_type %>
+                  <div class="numbers-row">
+                      <input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
+                  </div>
+              </div>
+          </div>
+        <% end %>
+      </div>
+
+<!--
+      <% @tickets.each do |ticket| %>
+      <% if ticket.remaining_seats_by_quantity > 0 %>
+        <tr>
+          <td><%= ticket.ticket_type %></td>
+          <td><%= number_to_currency(ticket.price) %></td>
+
+          <td><%= button_to 'Add to Cart' , line_items_path(ticket_id: ticket) %></td>
+        </tr>
+        <% end %>
+      <% end %> -->
+
+      <br>
+      <table class="table table_summary">
+      <tbody>
       <tr>
-        <td><%= ticket.ticket_type %></td>
-        <td><%= number_to_currency(ticket.price) %></td>
-
-        <td><%= button_to 'Add to Cart' , line_items_path(ticket_id: ticket) %></td>
-        <% if can? :update, ticket %>
-          <td><%= link_to 'Edit', edit_event_ticket_path(@event, ticket) %></td>
-        <% end %>
-        <% if can? :destroy, ticket %>
-          <td><%= link_to 'Destroy', event_ticket_path(@event, ticket) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+          <td>
+              Red Zone
+          </td>
+          <td class="text-right">
+              2
+          </td>
       </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+      <tr>
+          <td>
+              Total amount
+          </td>
+          <td class="text-right">
+              3x RM52
+          </td>
+      </tr>
+      <tr class="total">
+          <td>
+              Total cost
+          </td>
+          <td class="text-right">
+              RM154
+          </td>
+      </tr>
+      </tbody>
+      </table>
+      <a class="btn_full" href="cart.html">Add to cart</a>
+  </div><!--/box_style_1 -->
 
-<% end %>
+  <div class="box_style_4">
+      <i class="icon_set_1_icon-90"></i>
+      <h4><span>Purchase</span> by phone</h4>
+      <a href="tel://006031234567" class="phone">+60 3 123 4567</a>
+      <small>Monday to Friday 9.00am - 7.30pm</small>
+  </div>
+
+  </aside>
+</div><!--End row -->
+</div><!--End container -->
+
+  <div id="toTop"></div><!-- Back to top button -->
+
+  <div id="overlay"></div><!-- Mask on input focus -->
+
+   <!-- Specific scripts -->
+  <%= javascript_include_tag 'icheck.js' %>
+
+  <script>
+  $('input').iCheck({
+     checkboxClass: 'icheckbox_square-grey',
+     radioClass: 'iradio_square-grey'
+   });
+   </script>
+   <!-- Date and time pickers -->
+  <%= javascript_include_tag 'jquery.sliderPro.min.js' %>
+
+  <script type="text/javascript">
+    $( document ).ready(function( $ ) {
+      $( '#Img_carousel' ).sliderPro({
+        width: 960,
+        height: 500,
+        fade: true,
+        arrows: true,
+        buttons: false,
+        fullScreen: false,
+        smallSize: 500,
+        startSlide: 0,
+        mediumSize: 1000,
+        largeSize: 3000,
+        thumbnailArrows: true,
+        autoplay: false
+      });
+    });
+  </script>
+
+   <!-- Date and time pickers -->
+   <%= javascript_include_tag 'bootstrap-datepicker.js' %>
+   <%= javascript_include_tag 'bootstrap-timepicker.js' %>
+
+   <script>
+    $('input.date-pick').datepicker('setDate', 'today');
+    $('input.time-pick').timepicker({
+      minuteStep: 15,
+      showInpunts: false
+  })
+    </script>
+   <!-- Map -->
+  <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js' %>
+  <%= javascript_include_tag 'map.js' %>
+  <%= javascript_include_tag 'infobox.js' %>

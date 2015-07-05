@@ -1,14 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ticketing</title>
+  <title>Tixipro | DiverseCity KL 2015</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="kuala lumpur, kl, art, festival, dance, comedy, traditional, literature, music" />
+  <meta name="description" content="DiverseCity Kuala Lumpur 2015 Ticketing">
+  <meta name="author" content="alireza.io">
+  <title>Tixipro | DiverseCity KL 2015</title>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <!-- Favicons-->
+  <%= favicon_link_tag ("favicon.ico"), rel: 'apple-touch-icon', type: 'image/x-icon' %>
+  <% image_tag ("apple-touch-icon-57x57-precomposed.png"), rel: 'apple-touch-icon', type: 'image/x-icon' %>
+  <% image_tag ("apple-touch-icon-72x72-precomposed.png"), size: "72", rel: 'apple-touch-icon', type: 'image/x-icon' %>
+  <% image_tag ("apple-touch-icon-114x114-precomposed.png"), size: "114", rel: 'apple-touch-icon', type: 'image/x-icon' %>
+  <% image_tag ("apple-touch-icon-144x144-precomposed.png"), size: "144", rel: 'apple-touch-icon', type: 'image/x-icon' %>
+
+  <!-- CSS -->
+  <%= stylesheet_link_tag 'base.css' %>
+  <%= stylesheet_link_tag 'fontello/css/icon_set_1.css' %>
+  <%= stylesheet_link_tag 'fontello/css/icon_set_2.css' %>
+  <%= stylesheet_link_tag 'fontello/css/fontello.css' %>
+
+  <!-- Google web fonts -->
+ <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+ <link href='http://fonts.googleapis.com/css?family=Gochi+Hand' rel='stylesheet' type='text/css'>
+ <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Common scripts -->
+
+ <%= javascript_include_tag 'jquery-1.11.2.min.js' %>
+ <%= javascript_include_tag 'common_scripts_min.js' %>
+ <%= javascript_include_tag 'functions.js' %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-  <div class="navbar navbar-default navbar-static-top">
+  <!-- <div class="navbar navbar-default navbar-static-top">
     <div class="container">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
         <span class="icon-bar"></span>
@@ -19,21 +57,18 @@
       <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
           <li><p class="navbar-text"><%=link_to 'My Tickets', my_tickets_path if user_signed_in? %></p></li>
-          
+
         </ul>
        <ul class="nav navbar-nav navbar-right">
         <li><p class="navbar-text"><%=link_to current_user.email, edit_user_registration_path if user_signed_in? %></p></li>
         <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) if user_signed_in? %></li>
         <li><p class="navbar-text"><%= link_to('Login', new_user_session_path) unless user_signed_in? %></li>
-        <!-- <li><p class="navbar-text"><%= link_to 'Login with FB', user_omniauth_authorize_path(:facebook) unless user_signed_in? %></li> -->
+        <li><p class="navbar-text"><%= link_to 'Login with FB', user_omniauth_authorize_path(:facebook) unless user_signed_in? %></li>
        </ul>
-
-        <div class="col-xs-6 text-right">
-        </div>
 
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="container">
     <% if flash[:notice] %>
@@ -53,8 +88,61 @@
       </div>
     <% end %>
 
-    <%= yield %>
+
   </div>
+  <%= yield %>
+
+
 
 </body>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-3">
+                <h3>Need help?</h3>
+                <a href="tel://006031234567" id="phone">+60 3 123 4567</a>
+                <a href="mailto:help@tixipro.com" id="email_footer">help@tixipro.com</a>
+                <strong>Secure payments with</strong>
+                <p><%= image_tag("payments.png", height: '30', width: '231', data: {retina: true}, class: "img-responsive") %></p>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#">About festival</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Blog</a></li>
+                     <li><a href="#">Contacts</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Register</a></li>
+                     <li><a href="#">Terms and condition</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-sm-3"  id="newsletter">
+                <h3>Newsletter</h3>
+                <p>Join our newsletter to keep be informed about events.</p>
+      <div id="message-newsletter_2"></div>
+        <form method="post" action="assets/newsletter.php" name="newsletter_2" id="newsletter_2">
+                    <div class="form-group">
+                        <input name="email_newsletter_2" id="email_newsletter_2"  type="email" value=""  placeholder="Your mail" class="form-control">
+                      </div>
+                        <input type="submit" value="Subscribe" class="btn_1" id="submit-newsletter_2">
+                  </form>
+            </div>
+
+        </div><!-- End row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div id="social_footer">
+                    <ul>
+                        <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#"><i class="icon-instagram"></i></a></li>
+                        <li><a href="#"><i class="icon-youtube-play"></i></a></li>
+                    </ul>
+                    <p>© 2015, All ritgh reserved for Tixipro.</p>
+                </div>
+            </div>
+        </div><!-- End row -->
+    </div><!-- End container -->
+</footer><!-- End footer -->
 </html>
