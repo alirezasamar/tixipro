@@ -1,6 +1,5 @@
 class Ticket < ActiveRecord::Base
   belongs_to :event
-  belongs_to :user
   has_many :discounts, dependent: :destroy
   has_many :line_items
 

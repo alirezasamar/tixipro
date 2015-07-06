@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  has_many :events
-  has_many :tickets
   has_many :payments
   belongs_to :role
   # Include default devise modules. Others available are:

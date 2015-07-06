@@ -1,8 +1,7 @@
 class Event < ActiveRecord::Base
   include Bootsy::Container
 
-  belongs_to :user
-  has_many :tickets, dependent: :destroy
+  has_many :tickets
   belongs_to :hall
 
   has_attached_file :cover_image, styles: { small: "64x64", med: "100x100", large: "200x200" }

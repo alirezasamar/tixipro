@@ -1,5 +1,4 @@
 class Payment < ActiveRecord::Base
-  belongs_to :event
   belongs_to :user
   belongs_to :cart
   has_many :line_items, :dependent => :destroy
