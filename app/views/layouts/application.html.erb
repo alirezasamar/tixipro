@@ -102,14 +102,15 @@
                                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Sign in</a>
                                       <div class="dropdown-menu">
                                           <div class="row">
-                                              <div class="col-md-6 col-sm-6 col-xs-6">
-                                                  <a href="#" class="bt_facebook">
-                                                      <i class="icon-facebook"></i>Facebook </a>
+                                              <div class="col-md-12 col-sm-12 col-xs-12">
+
+                                                  <%= link_to 'Facebook', user_omniauth_authorize_path(:facebook), class: 'bt_facebook icon-facebook' unless user_signed_in? %>
+
                                               </div>
-                                              <div class="col-md-6 col-sm-6 col-xs-6">
+                                              <!-- <div class="col-md-6 col-sm-6 col-xs-6">
                                                   <a href="#" class="bt_paypal">
                                                       <i class="icon-paypal"></i>Paypal </a>
-                                              </div>
+                                              </div> -->
                                           </div>
                                           <div class="login-or">
                                               <hr class="hr-or">

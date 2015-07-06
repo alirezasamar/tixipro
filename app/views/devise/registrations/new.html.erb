@@ -12,14 +12,12 @@
               <div class="form-group">
                 <%= f.input :email, required: true, autofocus: true, class: 'form-control', placeholder: "Email" %>
               </div>
-              <% if f.object.password_required? %>
                 <div class="form-group">
                   <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), placeholder: "Password", class: "form-control" %>
                 </div>
                 <div class="form-group">
                   <%= f.input :password_confirmation, required: true, class: "form-control", placeholder: "Confirm password" %>
                 </div>
-              <% end %>
               <div id="pass-info" class="clearfix"></div>
               <%= f.button :submit, "Create an account", class: "btn_full" %>
             <% end %>

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
 
   resources :halls
-  devise_for :users, :path => '/', controllers: {omniauth_callbacks: "authentications", registrations: "registrations"}
+  # devise_for :users, :path => '/', controllers: {omniauth_callbacks: "authentications", registrations: "registrations"}
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   scope "/admin" do
     resources :users
