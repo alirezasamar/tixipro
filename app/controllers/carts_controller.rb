@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
   # GET /carts
@@ -64,6 +65,13 @@ class CartsController < ApplicationController
   # DELETE /carts/1.json
   def destroy
     @cart = current_cart
+
+    @line_items = LineItem.where(cart_id: @cart)
+
+    @line_items.each do |li|
+      li.destroy
+    end
+
     @cart.destroy
     session[:cart_id] = nil
 

@@ -135,7 +135,7 @@
                             </div>
         					<div class="col-lg-2 col-md-2 col-sm-2">
                             	<div class="price_list"><div><sup>RM</sup><%= (event.tickets.pluck(:price).min).to_i %>*<small >*Per person</small>
-                                <p><%= link_to 'Details', event_path(event), class: "btn_1" %></p>
+                                <p><%= link_to 'Details', event_tickets_path(event), class: "btn_1" %></p>
                               <p><%= link_to '+ Cart', event_tickets_path(event), class: "btn_1 red" %></p>
                                 </div>
 

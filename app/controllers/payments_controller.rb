@@ -11,8 +11,18 @@ class PaymentsController < ApplicationController
     @qr = RQRCode::QRCode.new( @payment.transaction_id, size: 4, level: :h).to_img.resize(200, 200).to_data_url
     @payment.update_attributes qr_code: @qr
 
-    # Cart.destroy(session[:cart_id])
-    # session[:cart_id] = nil
+    # @sum_of_item_purchased = LineItem.where(cart_id: @payment.cart_id).pluck(:quantity).sum.to_i
+    #
+    # @purchased_line_items = LineItem.where(cart_id: @payment.cart_id)
+    #
+    # @sum_of_item_purchased.times do
+    #   # oi.update_attributes payment_id: @payment.id
+    #   Booking.update_attributes payment_id: @payment.id, quantity: 1, seat_no: @purchased_line_items.seat_no, code: @purchased_line_items.code, cart_id: @payment.cart_id, ticket_id: @purchased_line_items.ticket_id, uid: @purchased_line_items.uid
+    # end
+
+
+    Cart.destroy(session[:cart_id])
+    session[:cart_id] = nil
   end
 
   def my_invoices

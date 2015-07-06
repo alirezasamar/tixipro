@@ -27,14 +27,12 @@ class TicketsController < ApplicationController
   # POST /tickets
   # POST /tickets.json
   def create
-    # if params[:min_seat_no].to_i != 0 && params[:max_seat_no].to_i != 0
-    #   quantity = (params[:max_seat_no].to_i - params[:min_seat_no].to_i) + 1
-    #   params[:quantity] == quantity
-    #   @ticket = Ticket.new(ticket_params)
-    # else
-    # end
-
     @ticket = Ticket.new(ticket_params)
+
+    if params[:ticket][:max_seat_no].to_i != 0
+      quantity = (params[:ticket][:max_seat_no].to_i - params[:ticket][:min_seat_no].to_i) + 1
+      @ticket.update_attributes quantity: quantity
+    end
 
     respond_to do |format|
       if @ticket.save
