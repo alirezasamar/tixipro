@@ -1,4 +1,12 @@
-<%= link_to 'Show Tickets', event_tickets_path(@event, @ticket), class: 'btn btn-default' %>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
 
 <p>
   <strong>Name:</strong>
@@ -27,5 +35,7 @@
 
 <% if can? :update, @event %>
   <%= link_to 'Edit', edit_event_path(@event) %>
-<% end %>
+<% end %> |
 <%= link_to 'Back', events_path %>
+
+</div>
