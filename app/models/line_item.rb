@@ -63,17 +63,18 @@ class LineItem < ActiveRecord::Base
       product: "Tickets",
       company: {
         name: "Diversecity",
-        address: "37 Great Jones\nFloor 2\nNew York City, NY 10012",
+        address: "Jalan Damansara 10, Malaysia",
         email: "admin@diversecity",
         logo: Rails.root.join("app/assets/images/diversecity.png")
       },
       line_items: [
-        ["Date",           payment.created_at.strftime("%e %b %Y %H:%M:%S%p")],
-        ["Account Billed", "#{payment.user.name} (#{payment.user.email})"],
+        # ["Date",           line.created_at.strftime("%e %b %Y %H:%M:%S%p")],
+        # ["Account Billed", "#{payment.user.name} (#{payment.user.email})"],
+        ["Buyer Name", User.find(self.user_id).name],
         ["Event", self.ticket.event.name],
         ["Tickets Quantity", self.quantity],
         ["Seat No", self.seat_no],
-        ["Transaction ID", payment.transaction_id]
+        ["Transaction ID", self.uid]
       ]
     )
   end

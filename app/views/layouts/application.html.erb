@@ -145,7 +145,7 @@
               <div class="row">
                   <div class="col-md-3 col-sm-3 col-xs-3">
                       <div id="logo">
-                        <a href="/"><%= image_tag ("logo.png"), width: "160", height: "34", alt: 'DiverseCity', data: {retina: true}, class: "logo_normal" %></a>
+                        <a href="/"><%= image_tag ("logo_sticky.png"), width: "160", height: "34", alt: 'DiverseCity', data: {retina: true}, class: "logo_normal" %></a>
                         <a href="/"><%= image_tag ("logo_sticky.png"), width: "160", height: "34", alt: 'DiverseCity', data: {retina: true}, class: "logo_sticky" %></a>
                       </div>
                   </div>
@@ -164,6 +164,12 @@
                                 <% if current_user.admin? %>
                                   <li class="submenu">
                                       <%= link_to "Admin Dashboard", events_path, class: "show-submenu" %>
+                                  </li>
+                                <% end %>
+
+                                <% if current_user.admin? || current_user.curator? %>
+                                  <li class="submenu">
+                                      <%= link_to "My Tickets", my_tickets_path, class: "show-submenu" %>
                                   </li>
                                 <% end %>
                               <% end %>
