@@ -1,0 +1,51 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+
+<% if can? :create, Event %>
+  <%= link_to 'New Tickets', new_event_ticket_path, class: 'btn btn-default' %>
+  <%= link_to 'Manage discount', event_discounts_path(@event), class: 'btn btn-default' %>
+<% end %>
+
+<h1>Listing Tickets</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Ticket Type</th>
+      <% if @event.free_seating? %>
+        <th>Seating</th>
+      <% else %>
+        <th>Min seat no</th>
+        <th>Max seat no</th>
+      <% end %>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.ticket_type %></td>
+        <% if ticket.event.free_seating? %>
+          <td>Free Seating</td>
+        <% else %>
+          <td><%= ticket.min_seat_no%></td>
+          <td><%= ticket.max_seat_no %></td>
+        <% end %>
+          <td><%= link_to 'Edit', edit_event_ticket_path(@event, ticket) %></td>
+          <td><%= link_to 'Destroy', event_ticket_path(@event, ticket), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+</div>

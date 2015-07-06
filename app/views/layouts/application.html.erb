@@ -160,6 +160,13 @@
                               <li class="submenu">
                                   <%= link_to "Home", store_url, class: "show-submenu" %>
                               </li>
+                              <% if user_signed_in? %>
+                                <% if current_user.admin? %>
+                                  <li class="submenu">
+                                      <%= link_to "Admin Dashboard", events_path, class: "show-submenu" %>
+                                  </li>
+                                <% end %>
+                              <% end %>
                               <li class="submenu">
                                   <a href="javascript:void(0);" class="show-submenu">Genres <i class="icon-down-open-mini"></i></a>
                                   <ul>

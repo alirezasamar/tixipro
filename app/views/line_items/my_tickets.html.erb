@@ -36,11 +36,11 @@
           </thead>
 
           <tbody>
-            <% @my_tickets.each do |mt| %>
+
               <tr>
-                <td><%= mt.ticket.event.name %></td>
-                <td><%= mt.ticket.ticket_type %></td>
-                <td><%= mt.quantity %></td>
+                <td><%= ticket.event.name %></td>
+                <td><%= ticket.ticket_type %></td>
+                <td><%= @my_tickets.pluck(:quantity).sum %></td>
                 <td>
                   <% if mt.seat_no == 0 || mt.seat_no.nil? %>
                     Free Seating
@@ -50,7 +50,7 @@
                 </td>
                 <td><%= link_to "Download Ticket", line_item_path(mt.id, format: :pdf), target: '_blank' %>
               </tr>
-            <% end %>
+
           </tbody>
         </table>
 

@@ -1,3 +1,13 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+
 <% if can? :create, Event %>
   <%= link_to 'New Event', new_event_path, class: 'btn btn-default' %>
   <%= link_to 'Halls', halls_path, class: 'btn btn-default' %>
@@ -28,10 +38,10 @@
         <td><%= event.start.strftime("%e %b %Y %H:%M:%S%p") %></td>
         <td><%= event.end.strftime("%e %b %Y %H:%M:%S%p") %></td>
         <% if can? :create, event %>
-          <td><%= link_to 'Add ticket', new_event_ticket_path(event) %></td>
+          <td><%= link_to 'Manage ticket', event_tickets_path(event) %></td>
         <% end %>
         <% if can? :create, event %>
-          <td><%= link_to 'Add discount', new_event_discount_path(event) %></td>
+          <td><%= link_to 'Manage discount', event_discounts_path(event) %></td>
         <% end %>
         <td><%= link_to 'Buy tickets', event_tickets_path(event) %></td>
         <% if can? :update, event %>
@@ -46,3 +56,4 @@
 </table>
 
 <br>
+</div>
