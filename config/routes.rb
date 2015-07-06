@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   get "/my_invoices" => "payments#my_invoices"
 
+  get "/faq" => "store#faq"
+
   scope '/admin' do
     resources :events
   end
