@@ -12,7 +12,7 @@ require 'mina/unicorn'
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :domain, '128.199.195.72'
-set :deploy_to, '/home/deployer/ticketing'
+set :deploy_to, '/home/deployer/ticketing/'
 set :repository, 'https://github.com/RNJMedia/tixipro.git'
 set :branch, 'master'
 set :user, 'deployer'
