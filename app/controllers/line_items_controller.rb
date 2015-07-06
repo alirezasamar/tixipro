@@ -31,7 +31,24 @@ class LineItemsController < ApplicationController
   end
 
   def my_tickets
-    @my_tickets = LineItem.joins(:payment).where(payments: { user_id: current_user })
+    if current_user.curator? || current_user.admin?
+      @my_tickets = LineItem.where user_id: current_user.id
+    else
+      @my_tickets = LineItem.joins(:payment).where(payments: { user_id: current_user })
+    end
+  end
+
+  def special_checkout
+    @line_items = current_cart.line_items
+
+    @line_items.each do |li|
+      li.update_attributes special_checkout: true, user_id: current_user.id
+    end
+
+    current_cart.update_attributes expired: true
+    session[:cart_id] = nil
+
+    redirect_to my_tickets_path, notice: 'Ticket was successfully bought through special checkout'
   end
 
   # def promo

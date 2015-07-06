@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706003333) do
+ActiveRecord::Schema.define(version: 20150706030536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20150706003333) do
 
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
 
+  create_table "bookings", force: :cascade do |t|
+    t.integer  "cart_id"
+    t.integer  "ticket_id"
+    t.integer  "quantity"
+    t.integer  "seat_no"
+    t.integer  "code"
+    t.integer  "payment_id"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "bootsy_image_galleries", force: :cascade do |t|
     t.integer  "bootsy_resource_id"
     t.string   "bootsy_resource_type"
@@ -43,8 +55,9 @@ ActiveRecord::Schema.define(version: 20150706003333) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "expired",    default: false
   end
 
   create_table "discounts", force: :cascade do |t|
@@ -93,13 +106,15 @@ ActiveRecord::Schema.define(version: 20150706003333) do
   create_table "line_items", force: :cascade do |t|
     t.integer  "ticket_id"
     t.integer  "cart_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "quantity",   default: 1
-    t.integer  "seat_no",    default: 0
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "quantity",         default: 1
+    t.integer  "seat_no",          default: 0
     t.string   "code"
     t.integer  "payment_id"
     t.string   "uid"
+    t.boolean  "special_checkout", default: false
+    t.integer  "user_id"
   end
 
   create_table "payments", force: :cascade do |t|

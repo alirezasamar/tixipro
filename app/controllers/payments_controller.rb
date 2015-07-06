@@ -21,8 +21,9 @@ class PaymentsController < ApplicationController
     # end
 
 
-    Cart.destroy(session[:cart_id])
+    current_cart.update_attributes expired: true
     session[:cart_id] = nil
+
   end
 
   def my_invoices

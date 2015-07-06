@@ -9,27 +9,29 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied!"
-    redirect_to root_url
+    redirect_to store_path
   end
 
   private
 
-  def current_cart
-    Cart.find(session[:cart_id])
-  rescue ActiveRecord::RecordNotFound
-    cart = Cart.create
-    session[:cart_id] = cart.id
-    cart
-  end
+  # def current_cart
+  #   Cart.find_by id: session[:cart_id], expired: false
+  # rescue ActiveRecord::RecordNotFound
+  #   cart = Cart.create
+  #   session[:cart_id] = cart.id
+  #   cart
+  # end
 
 
-  #  def current_cart
-  #    if !session[:cart_id].nil?
-  #      Cart.find(session[:cart_id])
-  #    else
-  #      Cart.new
-  #    end
-  #  end
+   def current_cart
+     if !session[:cart_id].nil?
+       Cart.find_by id: session[:cart_id], expired: false
+     else
+       cart = Cart.create
+       session[:cart_id] = cart.id
+       cart
+     end
+   end
 
   protected
   def configure_permitted_parameters

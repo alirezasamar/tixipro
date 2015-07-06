@@ -202,8 +202,9 @@
                           </li>
                           <li>
                               <div class="dropdown dropdown-cart">
-                                  <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class=" icon-basket-1"></i>Cart (<%= current_cart.line_items.size %>)</a> -->
+                                <% if current_cart.present? %>
                                   <a><i class=" icon-basket-1"></i><%= render 'layouts/cart_text' if user_signed_in? %></a>
+                                <% end %>
                                   <ul class="dropdown-menu" id="cart_items">
                                       <li>
                                         <div class="image"><%= image_tag ("thumb_cart_1.jpg"), alt: '' %></a></div>

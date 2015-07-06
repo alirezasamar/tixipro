@@ -40,7 +40,7 @@
       </td>
       <td>
         <% if !line_item.code.nil? %>
-          <% if line_item.code == line_item.promo_code %>
+          <% if line_item.promo_code.include?(line_item.code) %>
             <%= line_item.discount_percentage %>%
           <% else %>
             0%

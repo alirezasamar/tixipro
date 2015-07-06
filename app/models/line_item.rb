@@ -6,12 +6,13 @@ class LineItem < ActiveRecord::Base
   validates :quantity, :seat_no, presence: true
 
   def total_price_after_discount
-    @discount = Discount.find_by ticket_id: ticket.id
-    if !@discount.nil?
-      discount = Discount.find_by ticket_id: ticket.id
-      if discount.code == self[:code]
+    discount = Discount.where ticket_id: ticket.id
+    if !discount.nil?
+      discount = discount.pluck(:code)
+      if discount.include?(self[:code])
+        percentage = Discount.find_by(code: self[:code])
         initial_amount = (ticket.price).to_f
-        discounted_total = initial_amount * (discount.discount_percentage.to_f / 100)
+        discounted_total = initial_amount * (percentage.discount_percentage.to_f / 100)
         initial_amount - discounted_total
       else
         ticket.price
@@ -49,11 +50,11 @@ class LineItem < ActiveRecord::Base
   end
 
   def discount_percentage
-    Discount.find_by(ticket_id: ticket.id).discount_percentage
+    Discount.find_by(code: self[:code]).discount_percentage
   end
 
   def promo_code
-    Discount.find_by(ticket_id: ticket.id).code
+    Discount.where(ticket_id: ticket.id).pluck(:code)
   end
 
   def receipt

@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   get "/my_tickets" => "line_items#my_tickets"
 
+  post "/special_checkout" => "line_items#special_checkout"
+
   get "/my_invoices" => "payments#my_invoices"
 
   scope '/admin' do
