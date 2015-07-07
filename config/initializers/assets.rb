@@ -10,4 +10,4 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 
-Rails.application.config.assets.precompile += %w( success.png notice.png error.png warning.png infobox.js map.js bootstrap-timepicker.js bootstrap-datepicker.js icheck.js jquery.sliderPro.min.js timer.jquery.js jquery-1.11.2.min.js common_scripts_min.js functions.js base.css fontello/css/icon_set_1.css fontello/css/icon_set_2.css fontello/css/fontello.css)
+Rails.application.config.assets.precompile += %w( infobox.js map.js bootstrap-timepicker.js bootstrap-datepicker.js icheck.js jquery.sliderPro.min.js timer.jquery.js jquery-1.11.2.min.js common_scripts_min.js functions.js base.css fontello/css/icon_set_1.css fontello/css/icon_set_2.css fontello/css/fontello.css)

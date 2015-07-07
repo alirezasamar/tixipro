@@ -97,13 +97,15 @@
                 	</div>
                     </div><!--/tools -->
 
+
                     <% @events.each do |event| %>
 
             			<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
                            <div class="row">
                         	<div class="col-lg-4 col-md-4 col-sm-4">
-                            	<div class="img_list"><a href="event.html"><%= link_to image_tag(event.cover_image.url(:large)), event.cover_image.url  %>
-                                <div class="short_info"><i class="icon_set_1_icon-4"></i><%= event.genre %></div></a>
+                            	<div class="img_list">
+                                <%= link_to image_tag(event.cover_image.url(:large)), event.cover_image.url %>
+                                <div class="short_info"><i class="icon_set_1_icon-4"></i><%= event.genre %></div>
                                 </div>
                             </div>
                              <div class="clearfix visible-xs-block"></div>
@@ -147,17 +149,9 @@
 
                         <hr>
 
-                        <!-- <div class="text-center">
-                            <ul class="pagination">
-                                <li><a href="#">Prev</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">Next</a></li>
-                            </ul>
-                        </div><! end pagination-->
+                        <div style="text-align:center">
+                          <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+                        </div>
 
                 </div><!-- End col lg-9 -->
             </div><!-- End row -->

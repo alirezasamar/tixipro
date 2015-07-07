@@ -81,8 +81,8 @@ gem 'mina-sidekiq', :require => false
 # mina's unicorn helper
 gem 'mina-unicorn', :require => false
 
-#nicer notification
-gem "gritter", "1.1.0"
+#pagination
+gem 'will_paginate-bootstrap'
 
 # Heroku bug fix
 gem 'rails_12factor', group: :production

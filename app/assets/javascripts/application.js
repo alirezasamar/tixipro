@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootsy
-//= require gritter
 //= require timer.jquery
 //= require bootstrap
 //= require_tree .
