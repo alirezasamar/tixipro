@@ -26,4 +26,10 @@ class Cart < ActiveRecord::Base
     line_items.collect { |item| item.valid? ? item.total_price_after_discount * item.quantity : 0 }.sum
   end
 
+  def cron_job_delete_cart
+    cart_time = Time.now - 600
+    expired_cart = Cart.where("updated_at < ?", cart_time).where(expired: false)
+    expired_cart.destroy_all
+  end
+
 end

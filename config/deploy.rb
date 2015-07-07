@@ -4,6 +4,7 @@ require 'mina/git'
 require 'mina/rbenv'
 require 'mina_sidekiq/tasks'
 require 'mina/unicorn'
+require 'mina/whenever'
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -20,6 +21,7 @@ set :forward_agent, true
 set :port, '22'
 set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 set :term_mode, nil
+set_default :whenever_name, "#{domain}_#{rails_env}"
 
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
@@ -60,6 +62,30 @@ task :setup => :environment do
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/pids"]
 end
 
+namespace :whenever do
+  desc "Clear crontab"
+  task :clear do
+    queue %{
+      echo "-----> Clear crontab for #{domain}"
+      #{echo_cmd %[cd #{deploy_to!}/#{current_path!} ; bundle exec whenever --clear-crontab #{domain} --set 'environment=production&path=#{deploy_to!}/#{current_path!}']}
+    }
+  end
+  desc "Update crontab"
+  task :update do
+    queue %{
+      echo "-----> Update crontab for #{domain}"
+      #{echo_cmd %[cd #{deploy_to!}/#{current_path!} ; bundle exec whenever --update-crontab #{domain} --set 'environment=production&path=#{deploy_to!}/#{current_path!}']}
+    }
+  end
+  desc "Write crontab"
+  task :write do
+    queue %{
+      echo "-----> Update crontab for #{domain}"
+      #{echo_cmd %[cd #{deploy_to!}/#{current_path!} ; bundle exec whenever --write-crontab #{domain} --set 'environment=production&path=#{deploy_to!}/#{current_path!}']}
+    }
+  end
+end
+
 desc "Deploys the current version to the server."
 task :deploy => :environment do
   deploy do
@@ -74,6 +100,7 @@ task :deploy => :environment do
     invoke :'rails:assets_precompile'
 
     to :launch do
+      invoke :'whenever:update'
       invoke :'sidekiq:restart'
       invoke :'unicorn:restart'
     end

@@ -12,4 +12,13 @@ class Event < ActiveRecord::Base
   GENRES = %w(Dance Traditional Music Comedy Literature)
 
   # default_scope { where(active: true) }
+
+  def self.search(search)
+    if search
+      where('name LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
+
 end
