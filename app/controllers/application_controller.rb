@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
   #   cart
   # end
 
+  # def
+  #   !!session[:user_id]
+  # end
+
 
    def current_cart
      if !session[:cart_id].nil?
@@ -32,6 +36,8 @@ class ApplicationController < ActionController::Base
        cart
      end
    end
+
+
 
   protected
   def configure_permitted_parameters

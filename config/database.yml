@@ -4,12 +4,4 @@ development:
   database: ticketing_development
   pool: 5
   username: postgres
-  password:
-
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: ticketing_test
-  pool: 5
-  username: postgres
-  password:
+  password: postgres

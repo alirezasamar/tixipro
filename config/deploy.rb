@@ -11,7 +11,7 @@ require 'mina/unicorn'
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :domain, '128.199.195.72/diversecity'
+set :domain, '128.199.195.72'
 set :deploy_to, '/home/deployer/ticketing/'
 set :repository, 'https://github.com/RNJMedia/tixipro.git'
 set :branch, 'master'
