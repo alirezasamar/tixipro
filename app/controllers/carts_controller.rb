@@ -65,11 +65,11 @@ class CartsController < ApplicationController
   def destroy
     @cart = current_cart
 
-    @line_items = LineItem.where(cart_id: @cart)
-
-    @line_items.each do |li|
-      li.destroy
-    end
+    # @line_items = LineItem.where(cart_id: @cart)
+    #
+    # @line_items.each do |li|
+    #   li.destroy
+    # end
 
     @cart.destroy
     session[:cart_id] = nil

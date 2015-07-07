@@ -43,7 +43,6 @@
         <% if can? :create, event %>
           <td><%= link_to 'Manage discount', event_discounts_path(event) %></td>
         <% end %>
-        <td><%= link_to 'Buy tickets', event_tickets_path(event) %></td>
         <% if can? :update, event %>
           <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <% end %>

@@ -120,7 +120,6 @@ ActiveRecord::Schema.define(version: 20150706090453) do
   create_table "tickets", force: :cascade do |t|
     t.string   "ticket_type"
     t.decimal  "price",       precision: 5, scale: 2
-    t.boolean  "free"
     t.integer  "quantity"
     t.integer  "event_id"
     t.datetime "created_at",                                      null: false
@@ -151,7 +150,6 @@ ActiveRecord::Schema.define(version: 20150706090453) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "authentications", "users"
   add_foreign_key "discounts", "events"
   add_foreign_key "events", "halls"
 end
