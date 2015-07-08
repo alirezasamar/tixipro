@@ -139,12 +139,33 @@ $('#timer').timer({
             </tr>
             </thead>
             <tbody>
+
+							<br><br>
+							<h5 style="text-align:center">Your ticket purchase session will be kept for ten minutes.
+							Failing which that ticket will be released and you will have to redo the ticketing process again.
+							</h5>
+							<h3 style="text-align:center">
+
+								<div id="timer"></div>
+							</h3>
+							<br>
+
                 <%= link_to 'Empty cart' , @cart, method: :delete, confirm: 'Are you sure?', class: 'btn btn-danger pull-right' %>
                 <br></br><br>
                 <% @line_items.each do |line_item| %>
                   <%= render 'carts/cart_row', ticket: line_item.ticket, line_item: line_item %>
                 <% end %>
-
+							<script type="text/javascript">
+							$('#timer').timer({
+									format: '%M minutes %s seconds',
+									duration: '10m',
+									callback: function() {
+											alert('Time up!');
+											$('#timer').timer('reset');
+									},
+									repeat: true //repeatedly call the callback
+							});
+							</script>
             </tbody>
 
             </table>
@@ -338,27 +359,40 @@ $('#timer').timer({
 
 <script>
 //Incrementer
-$(function () {
-	"use strict";
-    $(".numbers-row").append('<div class="inc button_inc">+</div><div class="dec button_inc">-</div>');
-    $(".button_inc").on("click", function () {
+// $(function () {
+// 	"use strict";
+//     $(".numbers-row").append('<div class="inc button_inc">+</div><div class="dec button_inc">-</div>');
+//     $(".button_inc").on("click", function () {
+//
+//         var $button = $(this);
+//         var oldValue = $button.parent().find("input").val();
+//
+//         if ($button.text() == "+") {
+//             var newVal = parseFloat(oldValue) + 1;
+//         } else {
+//             // Don't allow decrementing below zero
+//             if (oldValue > 1) {
+//                 var newVal = parseFloat(oldValue) - 1;
+//             } else {
+//                 newVal = 1;
+//             }
+//         }
+//         $button.parent().find("input").val(newVal);
+//     });
+// });
 
-        var $button = $(this);
-        var oldValue = $button.parent().find("input").val();
 
-        if ($button.text() == "+") {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 1) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 1;
-            }
-        }
-        $button.parent().find("input").val(newVal);
-    });
+//start a timer & execute a function every 30 seconds and then reset the timer at the end of 30 seconds.
+$('#timer').timer({
+    format: '%M minutes %s seconds',
+    duration: '10m',
+    callback: function() {
+        alert('Time up!');
+        $('#timer').timer('reset');
+    },
+    repeat: true //repeatedly call the callback
 });
+
  </script>
 
 
