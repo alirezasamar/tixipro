@@ -19,7 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 
-set :output, "#{deploy_to}/shared/log/cron_log.log"
+set :output, "/home/deployer/ticketing/shared/log/cron_log.log"
 
 every 5.minutes do
   runner "Cart.cron_job_delete_cart"
