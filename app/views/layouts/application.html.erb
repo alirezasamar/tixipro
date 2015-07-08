@@ -38,9 +38,7 @@
 
   <!-- Common scripts -->
 
- <%= javascript_include_tag 'jquery-1.11.2.min.js' %>
- <%= javascript_include_tag 'common_scripts_min.js' %>
- <%= javascript_include_tag 'functions.js' %>
+
 
   <%= csrf_meta_tags %>
 </head>
@@ -154,7 +152,7 @@
                       <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
                       <div class="main-menu">
                           <div id="header_menu">
-                            <%= image_tag ("logo_sticky.png"), width: "160", height: "34", alt: 'DiverseCity', data: {retina: true} %></a>
+                            <%= image_tag ("logo_sticky.png"), width: "160", height: "34", alt: 'DiverseCity', data: {retina: true} %>
                           </div>
                           <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                           <ul>
@@ -194,6 +192,18 @@
                                   </ul>
                               </li>
 
+                              <% if user_signed_in? %>
+                                <li class="submenu">
+                                  <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "show-submenu" %>
+                                </li>
+                              <% else %>
+                                <li class="submenu">
+                                  <%= link_to "Sign in", new_user_session_path, class: "show-submenu" %>
+                                </li>
+                                <li class="submenu">
+                                  <%= link_to "Register", new_user_registration_path, class: "show-submenu" %>
+                                </li>
+                              <% end %>
                           </ul>
                       </div><!-- End main-menu -->
                       <ul id="top_tools">
@@ -333,4 +343,8 @@
         </div><!-- End row -->
     </div><!-- End container -->
 </footer><!-- End footer -->
+
+<%= javascript_include_tag 'jquery-1.11.2.min.js' %>
+<%= javascript_include_tag 'common_scripts_min.js' %>
+<%= javascript_include_tag 'functions.js' %>
 </html>

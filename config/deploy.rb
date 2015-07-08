@@ -26,7 +26,7 @@ set_default :whenever_name, "#{domain}_#{rails_env}"
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['config/database.yml', 'log', 'config/secrets.yml']
+set :shared_paths, ['config/database.yml', 'log', 'config/secrets.yml', 'config/application.yml']
 
 
 # This task is the environment that is loaded for most commands, such as
@@ -85,6 +85,7 @@ namespace :whenever do
     }
   end
 end
+
 
 desc "Deploys the current version to the server."
 task :deploy => :environment do
