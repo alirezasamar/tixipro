@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :line_items
   resources :carts
+  get "carts/delete_cart/:id" => "carts#delete_cart"
   # get 'store/index'
 
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'

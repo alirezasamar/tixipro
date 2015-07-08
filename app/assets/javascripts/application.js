@@ -13,6 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootsy
-//= require timer.jquery
 //= require bootstrap
 //= require_tree .

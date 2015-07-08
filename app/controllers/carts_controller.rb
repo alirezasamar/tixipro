@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, only: [:delete_cart, :show]
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
   # GET /carts
@@ -10,7 +11,6 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
-
     @line_items = current_cart.line_items
 
     @ticket = @line_items.joins(:ticket).select("ticket_id").group("ticket_id").pluck(:ticket_id)
@@ -71,6 +71,17 @@ class CartsController < ApplicationController
     #   li.destroy
     # end
 
+    @cart.destroy
+    session[:cart_id] = nil
+
+    respond_to do |format|
+      format.html { redirect_to store_url, notice: 'Your cart is currently empty' }
+      format.json { head :no_content }
+    end
+  end
+
+  def delete_cart
+    @cart = current_cart
     @cart.destroy
     session[:cart_id] = nil
 

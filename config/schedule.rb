@@ -19,6 +19,8 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.minutes do
+set :output, "#{deploy_to}/shared/log/cron_log.log"
+
+every 5.minutes do
   runner "Cart.cron_job_delete_cart"
 end
