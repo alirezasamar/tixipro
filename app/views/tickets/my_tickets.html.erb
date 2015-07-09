@@ -23,30 +23,29 @@
 				</p>
 			</div>
 			<div class="step">
+				<% if @my_tickets.empty? %>
+					<h5 style="color:red">No tickets to show.</h5>
+				<% else %>
+	        <table class="table">
+	          <thead>
+	            <tr>
+	              <th>Event</th>
+	              <th>Ticket</th>
+	              <th>Quantity</th>
+	              <th colspan="1"></th>
+	            </tr>
+	          </thead>
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Event</th>
-              <th>Ticket</th>
-              <th>Quantity</th>
-              <th colspan="1"></th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-              <tr>
-                <td><%= (@my_tickets.first).ticket.event.name %></td>
-                <td><%= (@my_tickets.first).ticket.ticket_type %></td>
-                <td><%= @my_tickets.pluck(:quantity).sum %></td>
-                <td><%= link_to "Print Ticket", event_ticket_path((@my_tickets.first).ticket.event, (@my_tickets.first).ticket, format: :pdf), target: '_blank' %>
-              </tr>
-            
-          </tbody>
-        </table>
-
-
+	          <tbody>
+	            <tr>
+	              <td><%= (@my_tickets.first).ticket.event.name %></td>
+	              <td><%= (@my_tickets.first).ticket.ticket_type %></td>
+	              <td><%= @my_tickets.pluck(:quantity).sum %></td>
+	              <td><%= link_to "Print Ticket", event_ticket_path((@my_tickets.first).ticket.event, (@my_tickets.first).ticket, format: :pdf), target: '_blank' %>
+	            </tr>
+	          </tbody>
+	        </table>
+				<% end %>
 			</div><!--End step -->
 		</div><!--End col-md-8 -->
 

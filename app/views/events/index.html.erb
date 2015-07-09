@@ -11,9 +11,10 @@
 <% if can? :create, Event %>
   <%= link_to 'New Event', new_event_path, class: 'btn btn-default' %>
   <%= link_to 'Halls', halls_path, class: 'btn btn-default' %>
+  <%= link_to 'Users', user_index_path, class: 'btn btn-default' %>
 <% end %>
 
-<h1>Listing Events</h1>
+<h1>Events</h1>
 
 <table class="table">
   <thead>
@@ -55,9 +56,17 @@
 </table>
 
 <div style="text-align:center">
-<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+  <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
 </div>
 
 <br>
 
 </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

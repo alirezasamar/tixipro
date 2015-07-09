@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   scope "/admin" do
-    resources :users
+    resources :events
+    resources :user, :controller => "user"
   end
 
   resources :events do
@@ -34,10 +35,6 @@ Rails.application.routes.draw do
   get "/my_invoices" => "payments#my_invoices"
 
   get "/faq" => "store#faq"
-
-  scope '/admin' do
-    resources :events
-  end
 
   root :to => 'store#index' , :as => 'store'
 
