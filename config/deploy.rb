@@ -87,7 +87,7 @@ namespace :whenever do
 end
 
 namespace :images do
-  task :update
+  task :update do
     queue %{
       echo "-----> Updating images folder for #{domain}"
       #{echo_cmd %[ln -s #{deploy_to!}/public/system/ #{deploy_to!}/#{current_path!}/public/]}
