@@ -84,6 +84,9 @@ gem 'mina-unicorn', :require => false
 #pagination
 gem 'will_paginate-bootstrap'
 
+#pdf
+gem 'prawn'
+
 # Heroku bug fix
 gem 'rails_12factor', group: :production
 

@@ -10,15 +10,18 @@ class LineItemsController < ApplicationController
   # GET /line_items/1
   # GET /line_items/1.json
   def show
-     respond_to do |format|
-       format.pdf {
-         send_data @line_item.receipt.render,
-           filename: "#{@line_item.created_at.strftime("%Y-%m-%d")}-diversecity-ticket.pdf",
-           type: "application/pdf",
-           disposition: :inline
-       }
-     end
-   end
+    # @my_tickets = LineItem.where user_id: current_user.id
+    # # @event = @my_tickets
+    #  respond_to do |format|
+    #    format.html
+    #    format.pdf do
+    #      pdf = PrintTicket.new(@my_tickets)
+    #      send_data pdf.render, filename: "ticket_#{@line_item.uid}",
+    #                            type: "application/pdf",
+    #                            disposition: "inline"
+    #    end
+    #  end
+  end
 
 
   # GET /line_items/new
@@ -30,13 +33,13 @@ class LineItemsController < ApplicationController
   def edit
   end
 
-  def my_tickets
-    if current_user.curator? || current_user.admin?
-      @my_tickets = LineItem.where user_id: current_user.id
-    else
-      @my_tickets = LineItem.joins(:payment).where(payments: { user_id: current_user })
-    end
-  end
+  # def my_tickets
+  #   if current_user.curator? || current_user.admin?
+  #     @my_tickets = LineItem.where user_id: current_user.id
+  #   else
+  #     @my_tickets = LineItem.joins(:payment).where(payments: { user_id: current_user })
+  #   end
+  # end
 
   def special_checkout
     @line_items = current_cart.line_items

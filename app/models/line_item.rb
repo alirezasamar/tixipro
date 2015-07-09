@@ -57,25 +57,25 @@ class LineItem < ActiveRecord::Base
     Discount.where(ticket_id: ticket.id).pluck(:code)
   end
 
-  def receipt
-    Receipts::Receipt.new(
-      id: payment_id,
-      product: "Tickets",
-      company: {
-        name: "Diversecity",
-        address: "Jalan Damansara 10, Malaysia",
-        email: "admin@diversecity",
-        logo: Rails.root.join("app/assets/images/diversecity.png")
-      },
-      line_items: [
-        # ["Date",           line.created_at.strftime("%e %b %Y %H:%M:%S%p")],
-        # ["Account Billed", "#{payment.user.name} (#{payment.user.email})"],
-        ["Buyer Name", User.find(self.user_id).name],
-        ["Event", self.ticket.event.name],
-        ["Tickets Quantity", self.quantity],
-        ["Seat No", self.seat_no],
-        ["Transaction ID", self.uid]
-      ]
-    )
-  end
+  # def receipt
+  #   Receipts::Receipt.new(
+  #     id: payment_id,
+  #     product: "Tickets",
+  #     company: {
+  #       name: "Diversecity",
+  #       address: "Jalan Damansara 10, Malaysia",
+  #       email: "admin@diversecity",
+  #       logo: Rails.root.join("app/assets/images/diversecity.png")
+  #     },
+  #     line_items: [
+  #       # ["Date",           line.created_at.strftime("%e %b %Y %H:%M:%S%p")],
+  #       # ["Account Billed", "#{payment.user.name} (#{payment.user.email})"],
+  #       ["Buyer Name", User.find(self.user_id).name],
+  #       ["Event", self.ticket.event.name],
+  #       ["Tickets Quantity", self.quantity],
+  #       ["Seat No", self.seat_no],
+  #       ["Transaction ID", self.uid]
+  #     ]
+  #   )
+  # end
 end

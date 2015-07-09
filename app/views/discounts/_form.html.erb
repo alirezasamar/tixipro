@@ -19,6 +19,7 @@
   <div class="field">
     <%= f.input :discount_percentage %>
   </div>
+  <%= f.input :event_id, as: "hidden", input_html: { value: @tickets.pluck(:event_id).last } %>
   <div class="field">
     <%= f.input :code %>
   </div>

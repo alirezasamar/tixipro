@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   post "/payments/:id" => "payments#show"
   post "/hook" => "payments#hook"
 
-  get "/my_tickets" => "line_items#my_tickets"
+  get "/my_tickets" => "tickets#my_tickets"
 
   post "/special_checkout" => "line_items#special_checkout"
 

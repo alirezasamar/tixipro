@@ -6,7 +6,7 @@ class DiscountsController < ApplicationController
   # GET /discounts
   # GET /discounts.json
   def index
-    @discounts = Discount.all
+    @discounts = Discount.where(event_id: @event)
   end
 
   # GET /discounts/1
@@ -22,7 +22,7 @@ class DiscountsController < ApplicationController
   # GET /discounts/1/edit
   def edit
   end
-  
+
   # POST /discounts
   # POST /discounts.json
   def create

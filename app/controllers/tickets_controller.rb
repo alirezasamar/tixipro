@@ -1,7 +1,7 @@
 class TicketsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
-  before_action :set_event
+  before_action :set_event, except: [:my_tickets]
 
   # GET /tickets
   # GET /tickets.json
@@ -13,7 +13,33 @@ class TicketsController < ApplicationController
   # GET /tickets/1
   # GET /tickets/1.json
   def show
+    # @my_tickets = LineItem.find_by user_id: current_user.id
+    # @event = @my_tickets
+    if current_user.curator? || current_user.admin?
+      @my_tickets = LineItem.where user_id: current_user.id
+    else
+      @my_tickets = LineItem.joins(:payment).where(payments: { user_id: current_user })
+    end
+
+     respond_to do |format|
+       format.html
+       format.pdf do
+         pdf = PrintTicket.new(@my_tickets)
+         send_data pdf.render, filename: "ticket_#{@my_tickets.first.ticket.ticket_type}",
+                               type: "application/pdf",
+                               disposition: "inline"
+       end
+     end
   end
+
+  def my_tickets
+    if current_user.curator? || current_user.admin?
+      @my_tickets = LineItem.where user_id: current_user.id
+    else
+      @my_tickets = LineItem.joins(:payment).where(payments: { user_id: current_user })
+    end
+  end
+
 
   # GET /tickets/new
   def new

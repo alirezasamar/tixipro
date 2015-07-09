@@ -300,6 +300,7 @@ DEPENDENCIES
   omniauth-facebook
   paperclip!
   pg
+  prawn
   rails (= 4.2.1)
   rails_12factor
   receipts
