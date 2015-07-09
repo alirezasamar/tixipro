@@ -110,10 +110,10 @@ task :deploy => :environment do
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
     invoke :'rails:assets_precompile'
+    invoke :'images:update'
 
     to :launch do
       invoke :'whenever:update'
-      invoke :'images:update'
       invoke :'sidekiq:restart'
       invoke :'unicorn:restart'
     end
