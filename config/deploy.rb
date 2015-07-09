@@ -106,11 +106,11 @@ task :deploy => :environment do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
-    invoke :'images:update'
     invoke :'rails:assets_precompile'
 
     to :launch do
       invoke :'whenever:update'
+      invoke :'images:update'
       invoke :'sidekiq:restart'
       invoke :'unicorn:restart'
     end
