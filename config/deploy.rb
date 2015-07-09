@@ -86,6 +86,17 @@ namespace :whenever do
   end
 end
 
+namespace :images do
+  desc "Update images folder"
+  task :update do
+    queue %{
+      echo "-----> Updating images folder for #{domain}"
+      queue! %[mkdir -p "#{deploy_to}/current/public/system/"]
+      queue! %[chmod g+rx,u+rwx "#{deploy_to}/current/public/system/"]
+    }
+  end
+end
+
 
 desc "Deploys the current version to the server."
 task :deploy => :environment do
@@ -102,6 +113,7 @@ task :deploy => :environment do
 
     to :launch do
       invoke :'whenever:update'
+      invoke :'images:update'
       invoke :'sidekiq:restart'
       invoke :'unicorn:restart'
     end
