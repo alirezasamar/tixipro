@@ -19,8 +19,8 @@
 
 # Learn more: http://github.com/javan/whenever
 
-set :output, "/home/deployer/ticketing/shared/log/cron_log.log"
+set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
 
-every 5.minutes do
-  runner "Cart.cron_job_delete_cart"
+every 1.minute do
+  rake "cart:clear"
 end
