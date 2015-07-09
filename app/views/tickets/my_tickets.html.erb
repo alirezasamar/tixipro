@@ -1,0 +1,54 @@
+<section id="hero_2">
+	<div class="intro_title animated fadeInDown">
+
+    </div>   <!-- End intro-title -->
+</section><!-- End Section hero_2 -->
+
+    <div id="position">
+    	<div class="container">
+        	<ul>
+            <li><%= link_to "My Tickets", my_tickets_path %></li>
+          </ul>
+        </div>
+    </div><!-- End position -->
+
+    <div class="container margin_60">
+	<div class="row">
+		<div class="col-md-8">
+
+			<div class="form_title">
+				<h3><strong><i class="icon-tag-1"></i></strong>My Tickets</h3>
+				<p>
+					Print your tickets here
+				</p>
+			</div>
+			<div class="step">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Ticket</th>
+              <th>Quantity</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+              <tr>
+                <td><%= (@my_tickets.first).ticket.event.name %></td>
+                <td><%= (@my_tickets.first).ticket.ticket_type %></td>
+                <td><%= @my_tickets.pluck(:quantity).sum %></td>
+                <td><%= link_to "Print Ticket", event_ticket_path((@my_tickets.first).ticket.event, (@my_tickets.first).ticket, format: :pdf), target: '_blank' %>
+              </tr>
+            
+          </tbody>
+        </table>
+
+
+			</div><!--End step -->
+		</div><!--End col-md-8 -->
+
+	</div><!--End row -->
+</div>
