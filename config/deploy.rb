@@ -87,16 +87,13 @@ namespace :whenever do
 end
 
 namespace :images do
-  desc "Update images folder"
-  task :update do
+  task :update
     queue %{
       echo "-----> Updating images folder for #{domain}"
-      queue! %[mkdir -p "#{deploy_to}/current/public/system/"]
-      queue! %[chmod g+rx,u+rwx "#{deploy_to}/current/public/system/"]
+      #{echo_cmd %[ln -s #{deploy_to!}/public/system/ #{deploy_to!}/#{current_path!}/public/]}
     }
   end
 end
-
 
 desc "Deploys the current version to the server."
 task :deploy => :environment do
@@ -109,8 +106,8 @@ task :deploy => :environment do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
-    invoke :'rails:assets_precompile'
     invoke :'images:update'
+    invoke :'rails:assets_precompile'
 
     to :launch do
       invoke :'whenever:update'
