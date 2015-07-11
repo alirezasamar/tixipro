@@ -65,12 +65,6 @@ gem 'rqrcode_png'
 # Editor
 gem 'bootsy'
 
-# for pdf
-gem 'receipts'
-
-# cron jobs
-gem 'whenever', :require => false
-
 # The most lovely gem ever
 gem 'mina'
 
