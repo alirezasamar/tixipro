@@ -102,4 +102,7 @@ group :development, :test do
 
   # Nicer errors
   gem 'better_errors'
+
+  #capture emails
+  gem 'mailcatcher'
 end

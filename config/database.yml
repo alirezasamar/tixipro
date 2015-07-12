@@ -3,5 +3,5 @@ development:
   encoding: unicode
   database: ticketing_development
   pool: 5
-  username: postgres
-  password: postgres
+  username: roshan
+  password:
