@@ -157,10 +157,9 @@
                                <li class="submenu">
                                   <a href="javascript:void(0);" class="show-submenu">Venues <i class="icon-down-open-mini"></i></a>
                                   <ul>
-                                    <li><a href="#">Black Box</a></li>
-                                    <li><a href="#">White Box</a></li>
-                                    <li><a href="#">KLCC</a></li>
-                                    <li><a href="#">KLIA</a></li>
+                                    <% Event.all.map(&:venue).uniq.each do |e| %>
+                                      <li><a href="/?venue=<%= e %>"><%= e %></a></li>
+                                    <% end %>
                                   </ul>
                               </li>
 

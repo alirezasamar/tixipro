@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   get "/faq" => "store#faq"
 
+  get "store/venue" => "store#venue"
+
   root :to => 'store#index' , :as => 'store'
 
 end
