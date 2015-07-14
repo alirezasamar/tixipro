@@ -1,17 +1,18 @@
 <% if current_user.admin? %>
   <%= render 'tickets/admin_tickets' %>
 <% else %>
-<section class="parallax-window" data-parallax="scroll" data-image-src="/assets/single_tour_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
+
+<section class="parallax-window" data-parallax="scroll" data-image-src="<%= @event.cover_image %>", data-natural-width="1400" data-natural-height="470">
   <div class="parallax-content-2">
       <div class="container">
           <div class="row">
               <div class="col-md-8 col-sm-8">
-                  <h1>THE TREE BY DUA SPACE DANCE THEATRE</h1>
-                  <span>September 2nd at Publika, Black Box</span>
+                  <h1><%= @event.name.capitalize %></h1>
+                  <span><%= @event.start.strftime("%B %d, %Y") %> at <%= @event.venue %></span>
               </div>
               <div class="col-md-4 col-sm-4">
                   <div id="price_single_main">
-                      per person <span><sup>RM</sup>52</span>
+                      per person <span><sup>RM</sup><%= (@event.tickets.pluck(:price).min).to_i %></span>
                   </div>
               </div>
           </div>
@@ -181,7 +182,7 @@
               <p>
                 <%= @event.description %>
               </p>
-              <h4>What's include</h4>
+              <!-- <h4>What's include</h4>
               <p>
                   Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi.
               </p>
@@ -204,19 +205,19 @@
                           <li>No scripta electram necessitatibus sit</li>
                       </ul>
                   </div>
-              </div>
+              </div> -->
               <!-- End row  -->
           </div>
       </div>
       <hr>
       <div class="row">
           <div class="col-md-3">
-              <h3>Schedule</h3>
+              <!-- <h3>Schedule</h3> -->
           </div>
           <div class="col-md-9">
 
               <div class=" table-responsive">
-                  <table class="table table-striped">
+                  <!-- <table class="table table-striped">
                   <thead>
                   <tr>
                       <th colspan="2">
@@ -290,11 +291,11 @@
                       </td>
                   </tr>
                   </tbody>
-                  </table>
+                  </table> -->
               </div>
 
               <div class=" table-responsive">
-                  <table class="table table-striped">
+                  <!-- <table class="table table-striped">
                   <thead>
                   <tr>
                       <th colspan="2">
@@ -368,11 +369,11 @@
                       </td>
                   </tr>
                   </tbody>
-                  </table>
+                  </table> -->
               </div>
           </div>
       </div>
-      <hr>
+      <!-- <hr> -->
       <div class="row">
 </div>
   </div><!--End  single_tour_desc-->

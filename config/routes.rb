@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'uploads/new'
+
   resources :line_items
   resources :carts
   get "carts/delete_cart/:id" => "carts#delete_cart"
@@ -8,6 +10,7 @@ Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
 
   resources :halls
+  resources :uploads
   # devise_for :users, :path => '/', controllers: {omniauth_callbacks: "authentications", registrations: "registrations"}
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

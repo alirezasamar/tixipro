@@ -16,7 +16,7 @@
        <a href="#" class="animated fadeInUp button_intro">Add to Cart</a> <a href="#" class="animated fadeInUp button_intro outline">View Details</a>
 	</div>
 
-    	 <div id="search_bar_container">
+    	 <!-- <div id="search_bar_container">
       	<div class="container">
           <div class="search_bar">
               <span class="nav-facade-active" id="nav-search-in">
@@ -36,9 +36,9 @@
               <div class="nav-submit-button">
                   <input type="submit" title="Cerca" class="nav-submit-input" value="Search">
               </div>
-            </div><!-- End search bar-->
+            </div><! End search bar->
           </div>
-        </div><!-- /search_bar-->
+        </div><!- /search_bar-->
 </section><!-- End hero -->
 
 
@@ -69,9 +69,9 @@
         		</aside><!--End aside -->
                     <div class="col-lg-9 col-md-9">
 
-                    <div id="tools">
+                    <!-- <div id="tools"> -->
 
-                   <div class="row">
+                   <!-- <div class="row">
                    	<div class="col-md-3 col-sm-3 col-xs-6">
                     	<div class="styled-select-filters">
         								<select name="sort_price" id="sort_price">
@@ -94,8 +94,8 @@
                     <div class="col-md-6 col-sm-6 hidden-xs text-right">
                     </div>
 
-                	</div>
-                    </div><!--/tools -->
+                	</div> -->
+                    <!-- </div><!/tools -->
 
 
                     <% @events.each do |event| %>
@@ -104,7 +104,7 @@
                            <div class="row">
                         	<div class="col-lg-4 col-md-4 col-sm-4">
                             	<div class="img_list">
-                                <%= link_to image_tag(event.cover_image.url(:large)), event.cover_image.url %>
+                                <%= link_to image_tag(event.cover_image), event.cover_image.url %>
                                 <div class="short_info"><i class="icon_set_1_icon-4"></i><%= event.genre %></div>
                                 </div>
                             </div>
@@ -164,7 +164,6 @@
         <div class="parallax-content-1 magnific">
             <div>
                 <h3>DiverseCity KL 2015</h3>
-                <p>Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset, doctus volumus explicari qui ex.</p><a href="https://www.youtube.com/watch?v=Zz5cu72Gv5Y" class="video"><i class="icon-play-circled2-1"></i></a>
             </div>
         </div>
     </section><!-- End section -->
@@ -172,14 +171,14 @@
 
 <div id="toTop"></div><!-- Back to top button -->
 
-<script>
-//Search bar
-RM(function () {
-"use strict";
-RM("#searchDropdownBox").change(function(){
-    var Search_Str = RM(this).val();
-    //replace search str in span value
-    RM("#nav-search-in-content").text(Search_Str);
-  });
-});
-</script>
+<!-- // <script>
+// //Search bar
+// RM(function () {
+// "use strict";
+// RM("#searchDropdownBox").change(function(){
+//     var Search_Str = RM(this).val();
+//     //replace search str in span value
+//     RM("#nav-search-in-content").text(Search_Str);
+//   });
+// });
+// </script> -->
