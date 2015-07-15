@@ -8,6 +8,8 @@ class Ability
       can :manage, :all
     elsif user.curator?
       can :read, Event, Ticket
+    elsif user.subcurator?
+      can :read, Event, Ticket
     elsif user.regular?
       can :read, Event, Ticket
     end

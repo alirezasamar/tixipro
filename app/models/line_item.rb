@@ -39,7 +39,7 @@ class LineItem < ActiveRecord::Base
   end
 
   def all_taken_seat
-    line_items = LineItem.all
+    line_items = LineItem.where(ticket_id: ticket_id)
     line_items.pluck(:seat_no)
   end
 

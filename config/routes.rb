@@ -33,13 +33,23 @@ Rails.application.routes.draw do
 
   get "/my_tickets" => "tickets#my_tickets"
 
+  get "/assign_tickets" => "tickets#assign_tickets"
+
   post "/special_checkout" => "line_items#special_checkout"
+
+  put "/subcurator_tickets" => "tickets#subcurator_tickets"
+
+  put "/ticket_update_name" => "tickets#ticket_update_name"
+
+  get "/tickets_customization" => "tickets#tickets_customization"
 
   get "/my_invoices" => "payments#my_invoices"
 
   get "/faq" => "store#faq"
 
   get "store/venue" => "store#venue"
+
+  get "/print_tickets" => "tickets#print_tickets"
 
   root :to => 'store#index' , :as => 'store'
 

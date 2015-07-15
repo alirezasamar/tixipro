@@ -1,8 +1,3 @@
-<section id="hero_2">
-	<div class="intro_title animated fadeInDown">
-
-    </div>   <!-- End intro-title -->
-</section><!-- End Section hero_2 -->
 
     <div id="position">
     	<div class="container">
@@ -11,7 +6,11 @@
           </ul>
         </div>
     </div><!-- End position -->
-
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
     <div class="container margin_60">
 	<div class="row">
 		<div class="col-md-8">
@@ -37,12 +36,15 @@
 	          </thead>
 
 	          <tbody>
+							<% @mts.each do |mt| %>
 	            <tr>
-	              <td><%= (@my_tickets.first).ticket.event.name %></td>
-	              <td><%= (@my_tickets.first).ticket.ticket_type %></td>
-	              <td><%= @my_tickets.pluck(:quantity).sum %></td>
-	              <td><%= link_to "Print Ticket", event_ticket_path((@my_tickets.first).ticket.event, (@my_tickets.first).ticket, format: :pdf), target: '_blank' %>
-	            </tr>
+	              <td><%= Ticket.find(mt).event.name %></td>
+	              <td><%= Ticket.find(mt).ticket_type %></td>
+	              <td><%= @my_tickets.where(ticket_id: mt).pluck(:quantity).sum %></td>
+								<td><%= link_to "Customize Tickets", tickets_customization_path(ticket_id: mt) %></td>
+								<td><%= link_to "Assign Ticket", assign_tickets_path(ticket_id: mt) %></td>
+							</tr>
+							<% end %>
 	          </tbody>
 	        </table>
 				<% end %>
@@ -51,3 +53,9 @@
 
 	</div><!--End row -->
 </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>

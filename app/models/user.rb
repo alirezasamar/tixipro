@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
     self.role.name == "Curator"
   end
 
+  def subcurator?
+    self.role.name == "Subcurator"
+  end
+
   def regular?
     self.role.name == "Regular"
   end

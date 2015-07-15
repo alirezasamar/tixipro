@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713112517) do
+ActiveRecord::Schema.define(version: 20150714112212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20150713112517) do
     t.string   "uid"
     t.boolean  "special_checkout", default: false
     t.integer  "user_id"
+    t.string   "name"
   end
 
   create_table "payments", force: :cascade do |t|

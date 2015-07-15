@@ -20,7 +20,9 @@ class PrintTicket < Prawn::Document
       text "Event: #{ticket.ticket.event.name}"
       text "Ticket type: #{ticket.ticket.ticket_type}"
       text "Seat No: #{ticket.seat_no == 0 ? 'Free seating' : ticket.seat_no }"
-
+      text "Name: #{ticket.name}"
+      # @qr = RQRCode::QRCode.new( ticket.uid, size: 4, level: :h).to_img.resize(200, 200).to_data_url
+      # image @qr
       count += 1
 
       move_down 110

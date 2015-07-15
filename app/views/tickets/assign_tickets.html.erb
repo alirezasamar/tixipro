@@ -1,0 +1,62 @@
+<section id="hero_2">
+	<div class="intro_title animated fadeInDown">
+
+    </div>   <!-- End intro-title -->
+</section><!-- End Section hero_2 -->
+
+    <div id="position">
+    	<div class="container">
+        	<ul>
+            <li><%= link_to "My Tickets", my_tickets_path %></li>
+          </ul>
+        </div>
+    </div><!-- End position -->
+
+    <div class="container margin_60">
+	<div class="row">
+		<div class="col-md-8">
+
+			<div class="form_title">
+				<h3><strong><i class="icon-tag-1"></i></strong>Tickets</h3>
+			</div>
+			<div class="step">
+        <%= form_tag subcurator_tickets_path, method: :put  do %>
+	        <table class="table">
+	          <thead>
+	            <tr>
+                <th colspan="1"></th>
+	              <th>Event</th>
+	              <th>Ticket</th>
+                <th>Seat No</th>
+                <th>UID</th>
+	            </tr>
+	          </thead>
+
+	          <tbody>
+              <% @my_tickets.each do |mt| %>
+	            <tr>
+                  <td><%= check_box_tag "mt_id", mt.id %>
+	                <td><%= mt.ticket.event.name %></td>
+	                <td><%= mt.ticket.ticket_type %></td>
+                  <% if mt.seat_no > 0 %>
+                    <td><%= mt.seat_no %>
+                  <% else %>
+                    <td> Free seating </td>
+                  <% end %>
+                  <td><%= mt.uid %></td>
+							</tr>
+              <% end %>
+	          </tbody>
+	        </table>
+					<% if current_user.curator? %>
+          	<%= select_tag "Subcurator", options_from_collection_for_select(@subcurator, "id", "name"), {prompt: "-- Select a subcurator --"} %>
+					<% else %>
+						<%= select_tag "Subcurator", options_from_collection_for_select(@curator, "id", "name"), {prompt: "-- Select a curator --"} %>
+					<% end %>
+          <%= submit_tag "Assign" %>
+        <% end %>
+			</div><!--End step -->
+		</div><!--End col-md-8 -->
+
+	</div><!--End row -->
+</div>

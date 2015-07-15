@@ -25,7 +25,7 @@
   <%= stylesheet_link_tag 'fontello/css/icon_set_1.css' %>
   <%= stylesheet_link_tag 'fontello/css/icon_set_2.css' %>
   <%= stylesheet_link_tag 'fontello/css/fontello.css' %>
-  
+
   <!-- Google web fonts -->
  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
  <link href='http://fonts.googleapis.com/css?family=Gochi+Hand' rel='stylesheet' type='text/css'>
@@ -73,9 +73,7 @@
                                       <div class="dropdown-menu">
                                           <div class="row">
                                               <div class="col-md-12 col-sm-12 col-xs-12">
-
-                                                  <%= link_to 'Facebook', user_omniauth_authorize_path(:facebook), class: 'bt_facebook icon-facebook' unless user_signed_in? %>
-
+                                                <%= link_to 'Facebook', user_omniauth_authorize_path(:facebook), class: 'bt_facebook icon-facebook' unless user_signed_in? %>
                                               </div>
                                               <!-- <div class="col-md-6 col-sm-6 col-xs-6">
                                                   <a href="#" class="bt_paypal">
@@ -138,7 +136,7 @@
                                   </li>
                                 <% end %>
 
-                                <% if current_user.admin? || current_user.curator? %>
+                                <% if current_user.admin? || current_user.curator? || current_user.subcurator? %>
                                   <li class="submenu">
                                       <%= link_to "My Tickets", my_tickets_path, class: "show-submenu" %>
                                   </li>
