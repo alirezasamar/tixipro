@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   get "carts/delete_cart/:id" => "carts#delete_cart"
   # get 'store/index'
 
-  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
-
   resources :halls
   # devise_for :users, :path => '/', controllers: {omniauth_callbacks: "authentications", registrations: "registrations"}
 

@@ -1,6 +1,4 @@
 class Event < ActiveRecord::Base
-  include Bootsy::Container
-
   has_many :tickets
   has_many :discounts
   has_many :uploads

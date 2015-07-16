@@ -62,9 +62,6 @@ gem "figaro"
 #QR code
 gem 'rqrcode_png'
 
-# Editor
-gem 'bootsy', :git => "git://github.com/volmer/bootsy.git"
-
 # The most lovely gem ever
 gem 'mina'
 
@@ -80,6 +77,9 @@ gem 'will_paginate-bootstrap'
 
 #pdf
 gem 'prawn'
+
+#wysihtml5 editor
+gem 'bootstrap-wysihtml5-rails'
 
 # Heroku bug fix
 # gem 'rails_12factor', group: :production

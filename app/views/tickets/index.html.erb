@@ -216,7 +216,11 @@
             <h3>Terms & Conditions</h3>
         </div>
         <div class="col-md-9">
-          <p><%= @event.terms %>
+          <% if @event.terms.nil? %>
+            <p><%= @event.terms %></p>
+          <% else %>
+            <p><%= @event.terms.html_safe %></p>
+          <% end %>
         </div>
       </div>
 

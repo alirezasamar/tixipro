@@ -13,5 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require bootsy
-//= require_tree .
+//= require bootstrap-wysihtml5
+//= require parallax
+//= require wow
+//= require jquery.magnific-popup

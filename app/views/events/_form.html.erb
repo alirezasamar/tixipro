@@ -33,7 +33,7 @@
     <%= f.input :free_seating, as: :radio_buttons %>
   </div>
   <div class="field">
-    <%= f.input :description, as: :bootsy %>
+    <%= f.input :description, as: :wysihtml5 %>
   </div>
   <div class="field">
     <%= f.label :genre %><br>
@@ -41,7 +41,7 @@
   </div>
   <div class="field">
     <br>
-    <%= f.input :terms %>
+    <%= f.input :terms, as: :wysihtml5 %>
   </div>
   <div class="field">
     <%= f.label :start %><br>

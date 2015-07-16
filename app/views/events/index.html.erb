@@ -36,7 +36,11 @@
         <td><%= link_to image_tag(event.cover_image.url(:small)), event.cover_image.url %></td>
         <td><%= event.name %></td>
         <td><%= event.description.html_safe %></td>
-        <td><%= event.terms %></td>
+        <% if event.terms.nil? %>
+          <td><%= event.terms %></td>
+        <% else %>
+          <td><%= event.terms.html_safe %></td>
+        <% end %>
         <td><%= event.genre %></td>
         <td><%= event.start.strftime("%e %b %Y %H:%M:%S%p") %></td>
         <td><%= event.end.strftime("%e %b %Y %H:%M:%S%p") %></td>
