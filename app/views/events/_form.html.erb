@@ -40,6 +40,10 @@
     <%= f.select :genre, Event::GENRES, required: true, autofocus: true %>
   </div>
   <div class="field">
+    <br>
+    <%= f.input :terms %>
+  </div>
+  <div class="field">
     <%= f.label :start %><br>
     <%= f.datetime_select :start %>
   </div>

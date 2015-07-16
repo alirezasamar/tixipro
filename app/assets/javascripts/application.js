@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootsy
 //= require dropzone.min
 //= require bootstrap
+//= require bootsy
 //= require_tree .
