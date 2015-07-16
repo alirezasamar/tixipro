@@ -63,7 +63,7 @@ gem "figaro"
 gem 'rqrcode_png'
 
 # Editor
-gem 'bootsy'
+gem 'bootsy', :git => "git://github.com/volmer/bootsy.git"
 
 # The most lovely gem ever
 gem 'mina'
