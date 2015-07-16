@@ -1,11 +1,24 @@
-<%= simple_form_for([@event, @upload], html: { multipart: true }) do |f| %>
-  <%= f.error_notification %>
+<%= form_for([@event,@upload], html: { multipart: true }) do |f| %>
+  <% if @upload.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@upload.errors.count, "error") %> prohibited this upload from being saved:</h2>
 
-  <div class="form-inputs">
-    <%= f.input :uploaded_file, as: :file, multiple: true, name: 'upload[uploaded_file]' %>
-  </div>
+      <ul>
+        <% @upload.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <div class="form-actions">
-    <%= f.button :submit, 'Upload Logo' %>
+  <br>
+  <div class="actions">
+    <%= f.file_field :uploaded_file, multiple: true, name: 'upload[uploaded_file]', class: 'form-control' %>
+    <br>
+    <%= f.submit "Upload Logo", class: 'btn btn-default'%>
   </div>
+  <br></br>
 <% end %>
+
+<% # jquery upload template # %>
+<script id="template-upload" type="text/x-tmpl"><div class="upload">{%=o.name%}<div class="progress"><div class="progress-bar bar" style="width: 0%"></div></div></div></script>

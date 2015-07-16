@@ -81,6 +81,8 @@ gem 'prawn'
 #wysihtml5 editor
 gem 'bootstrap-wysihtml5-rails'
 
+gem 'jquery-fileupload-rails'
+
 # Heroku bug fix
 # gem 'rails_12factor', group: :production
 

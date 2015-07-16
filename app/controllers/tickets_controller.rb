@@ -53,7 +53,7 @@ class TicketsController < ApplicationController
   def assign_tickets
     @curator = User.where(role: 2)
     @subcurator = User.where(role: 4)
-    @my_tickets = LineItem.where(user_id: current_user.id).where(ticket_id: params[:ticket_id])
+    @my_tickets = LineItem.where(user_id: current_user.id).where(ticket_id: params[:ticket_id]).where(name: [nil, ''])
   end
 
   def subcurator_tickets

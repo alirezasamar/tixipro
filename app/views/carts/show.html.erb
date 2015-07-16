@@ -326,7 +326,7 @@ $('#timer').timer({
         </tbody>
         </table>
 
-				<% if @cart.total_price == 0 && (current_user.curator? || current_user.admin?) %>
+				<% if @cart.total_price == 0 && (current_user.curator? || current_user.admin? || current_user.subcurator?) %>
 					<%= link_to "Special check out" , special_checkout_path, method: :post, class: 'btn_full' %>
 				<% end %>
         <%= link_to "Check out" , new_payment_path, class: 'btn_full' %>

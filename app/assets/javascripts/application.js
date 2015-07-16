@@ -12,8 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 //= require bootstrap
 //= require bootstrap-wysihtml5
 //= require parallax
 //= require wow
 //= require jquery.magnific-popup
+//= require uploads

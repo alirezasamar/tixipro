@@ -27,16 +27,6 @@ class UploadsController < ApplicationController
   # POST /uploads.json
   def create
     @upload = @event.uploads.create(upload_params)
-
-    respond_to do |format|
-      if @upload.save
-        format.html { redirect_to event_uploads_path(@event), notice: 'Logo was successfully uploaded' }
-        format.json { render :show, status: :created, location: @upload }
-      else
-        format.html { render :new }
-        format.json { render json: @upload.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /uploads/1

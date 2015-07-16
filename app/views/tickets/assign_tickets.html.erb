@@ -18,7 +18,8 @@
 		<div class="col-md-8">
 
 			<div class="form_title">
-				<h3><strong><i class="icon-tag-1"></i></strong>Tickets</h3>
+				<h3><strong><i class="icon-tag-1"></i></strong>Assign Tickets</h3>
+        <p>Only tickets without name are allowed to assign</p>
 			</div>
 			<div class="step">
         <%= form_tag subcurator_tickets_path, method: :put  do %>
@@ -54,7 +55,7 @@
 					<% else %>
 						<%= select_tag "Subcurator", options_from_collection_for_select(@curator, "id", "name"), {prompt: "-- Select a curator --"} %>
 					<% end %>
-          <%= submit_tag "Assign" %>
+          &nbsp&nbsp&nbsp&nbsp<%= submit_tag "Assign", class: 'btn btn-default' %>
         <% end %>
 			</div><!--End step -->
 		</div><!--End col-md-8 -->
