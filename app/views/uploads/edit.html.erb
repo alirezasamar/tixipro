@@ -8,11 +8,11 @@
 
 <div class="container">
 
-  <h1>New logo</h1>
+  <h1>Editing upload</h1>
 
   <%= render 'form' %>
 
-  <br>
+  <%= link_to 'Show', event_upload_path(@event, @upload) %> |
   <%= link_to 'Back', event_uploads_path %>
 
 </div>

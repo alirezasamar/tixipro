@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
 
   has_many :tickets
   has_many :discounts
+  has_many :uploads
   belongs_to :hall
 
   has_attached_file :cover_image, styles: { small: "64x64", med: "100x100", large: "200x200" }

@@ -81,9 +81,6 @@ gem 'will_paginate-bootstrap'
 #pdf
 gem 'prawn'
 
-#multiple images upload
-gem 'dropzonejs-rails'
-
 # Heroku bug fix
 # gem 'rails_12factor', group: :production
 

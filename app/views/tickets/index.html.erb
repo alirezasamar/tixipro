@@ -209,7 +209,32 @@
               <!-- End row  -->
           </div>
       </div>
+
       <hr>
+      <div class="row">
+        <div class="col-md-3">
+            <h3>Terms & Conditions</h3>
+        </div>
+        <div class="col-md-9">
+          <p><%= @event.terms %>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-md-3">
+            <h3>Sponsors</h3>
+        </div>
+        <br></br><br>
+        <% @uploads.each do |logo| %>
+          <div class="col-xs-6 col-md-3">
+            <a class="thumbnail">
+              <%= image_tag(logo.uploaded_file) %>
+            </a>
+          </div>
+        <% end %>
+      </div>
+
       <div class="row">
           <div class="col-md-3">
               <!-- <h3>Schedule</h3> -->

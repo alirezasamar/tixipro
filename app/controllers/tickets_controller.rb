@@ -8,6 +8,7 @@ class TicketsController < ApplicationController
   def index
     @tickets = Ticket.where(event_id: @event)
     @line_item = current_cart.line_items.new
+    @uploads = Upload.where(event_id: @event)
   end
 
   def print_tickets

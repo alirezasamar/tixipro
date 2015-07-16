@@ -25,7 +25,7 @@
       <th>Genre</th>
       <th>Start</th>
       <th>End</th>
-      <th colspan="3"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -38,6 +38,9 @@
         <td><%= event.genre %></td>
         <td><%= event.start.strftime("%e %b %Y %H:%M:%S%p") %></td>
         <td><%= event.end.strftime("%e %b %Y %H:%M:%S%p") %></td>
+        <% if can? :create, event %>
+          <td><%= link_to 'Manage Logo', event_uploads_path(event) %></td>
+        <% end %>
         <% if can? :create, event %>
           <td><%= link_to 'Manage ticket', event_tickets_path(event) %></td>
         <% end %>

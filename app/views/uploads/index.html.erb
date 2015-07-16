@@ -1,0 +1,46 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+
+<%= link_to 'New Logo', new_event_upload_path(@event), class: 'btn btn-default'%>
+<%= link_to 'Events', events_path, class: 'btn btn-default'%>
+
+<h1>Sponsor Logos</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @uploads.each do |upload| %>
+      <tr>
+        <td><%= link_to image_tag(upload.uploaded_file.url(:thumb)), upload.uploaded_file.url %></td>
+        <td><%= link_to 'Edit', edit_event_upload_path(@event, upload) %></td>
+        <td><%= link_to 'Destroy', event_upload_path(@event, upload), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
